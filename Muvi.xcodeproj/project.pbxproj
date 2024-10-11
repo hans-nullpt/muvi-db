@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		906B04C02CB9275500730773 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04BF2CB9275500730773 /* SnapKit */; };
 		906B04C52CB927AE00730773 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04C42CB927AE00730773 /* RxSwift */; };
+		906B04DA2CB92B3200730773 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04D92CB92B3200730773 /* RxCocoa */; };
+		906B04DC2CB92B3700730773 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04DB2CB92B3700730773 /* RxBlocking */; };
+		906B04DE2CB92B3B00730773 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04DD2CB92B3B00730773 /* RxRelay */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906B04DE2CB92B3B00730773 /* RxRelay in Frameworks */,
+				906B04DA2CB92B3200730773 /* RxCocoa in Frameworks */,
+				906B04DC2CB92B3700730773 /* RxBlocking in Frameworks */,
 				906B04C52CB927AE00730773 /* RxSwift in Frameworks */,
 				906B04C02CB9275500730773 /* SnapKit in Frameworks */,
 			);
@@ -109,6 +115,9 @@
 			packageProductDependencies = (
 				906B04BF2CB9275500730773 /* SnapKit */,
 				906B04C42CB927AE00730773 /* RxSwift */,
+				906B04D92CB92B3200730773 /* RxCocoa */,
+				906B04DB2CB92B3700730773 /* RxBlocking */,
+				906B04DD2CB92B3B00730773 /* RxRelay */,
 			);
 			productName = Muvi;
 			productReference = 9048F1A52CB8C9E200D0FC34 /* Muvi.app */;
@@ -398,6 +407,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		906B04D92CB92B3200730773 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		906B04DB2CB92B3700730773 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		906B04DD2CB92B3B00730773 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
