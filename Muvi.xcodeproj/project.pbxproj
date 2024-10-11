@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		906B04C02CB9275500730773 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04BF2CB9275500730773 /* SnapKit */; };
+		906B04C22CB9275500730773 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04C12CB9275500730773 /* SnapKit-Dynamic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		9048F1A52CB8C9E200D0FC34 /* Muvi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906B04C02CB9275500730773 /* SnapKit in Frameworks */,
+				906B04C22CB9275500730773 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = Muvi;
 			packageProductDependencies = (
+				906B04BF2CB9275500730773 /* SnapKit */,
+				906B04C12CB9275500730773 /* SnapKit-Dynamic */,
 			);
 			productName = Muvi;
 			productReference = 9048F1A52CB8C9E200D0FC34 /* Muvi.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = 9048F19C2CB8C9E200D0FC34;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9048F1A62CB8C9E200D0FC34 /* Products */;
 			projectDirPath = "";
@@ -333,6 +346,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+		906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		906B04BF2CB9275500730773 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		906B04C12CB9275500730773 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9048F19D2CB8C9E200D0FC34 /* Project object */;
 }
