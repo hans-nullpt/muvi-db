@@ -8,8 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		906B04C02CB9275500730773 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04BF2CB9275500730773 /* SnapKit */; };
-		906B04C22CB9275500730773 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04C12CB9275500730773 /* SnapKit-Dynamic */; };
+		906B04C52CB927AE00730773 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04C42CB927AE00730773 /* RxSwift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		906B04C92CB927B300730773 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9048F1A52CB8C9E200D0FC34 /* Muvi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,8 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906B04C52CB927AE00730773 /* RxSwift in Frameworks */,
 				906B04C02CB9275500730773 /* SnapKit in Frameworks */,
-				906B04C22CB9275500730773 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				9048F1A72CB8C9E200D0FC34 /* Muvi */,
+				906B04C32CB927AE00730773 /* Frameworks */,
 				9048F1A62CB8C9E200D0FC34 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +79,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		906B04C32CB927AE00730773 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -75,6 +96,7 @@
 				9048F1A12CB8C9E200D0FC34 /* Sources */,
 				9048F1A22CB8C9E200D0FC34 /* Frameworks */,
 				9048F1A32CB8C9E200D0FC34 /* Resources */,
+				906B04C92CB927B300730773 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -86,7 +108,7 @@
 			name = Muvi;
 			packageProductDependencies = (
 				906B04BF2CB9275500730773 /* SnapKit */,
-				906B04C12CB9275500730773 /* SnapKit-Dynamic */,
+				906B04C42CB927AE00730773 /* RxSwift */,
 			);
 			productName = Muvi;
 			productReference = 9048F1A52CB8C9E200D0FC34 /* Muvi.app */;
@@ -372,10 +394,10 @@
 			package = 906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		906B04C12CB9275500730773 /* SnapKit-Dynamic */ = {
+		906B04C42CB927AE00730773 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
+			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
