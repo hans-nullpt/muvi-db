@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol MovieRepository {
-    func getMovieList() -> Observable<[Movie]>
+    func getMovieList() async throws -> Observable<[Movie]>
 }
