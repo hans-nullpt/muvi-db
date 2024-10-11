@@ -5,6 +5,23 @@
 //  Created by Ivan Nur Ilham Syah on 11/10/24.
 //
 
+struct MovieResult: Codable {
+
+    var page: Int?
+    var totalResults: Int?
+    var results: [Movie]?
+    var totalPages: Int?
+//    var dates: Dates?
+
+    enum CodingKeys: String, CodingKey {
+        case page = "page"
+        case totalResults = "total_results"
+        case results = "results"
+        case totalPages = "total_pages"
+//        case dates = "dates"
+    }
+}
+
 struct Movie: Codable {
 
     var popularity: Double?
