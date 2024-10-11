@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+
+protocol MovieRepository {
+    func getMovieList() -> Observable<[Movie]>
+}
