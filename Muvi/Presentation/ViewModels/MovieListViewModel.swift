@@ -15,9 +15,9 @@ class MovieListViewModel {
     let state: BehaviorRelay<ViewState> = BehaviorRelay(value: .initial)
     
     private let disposeBag = DisposeBag()
-    private let usecase: GetMovieListUsecase
+    private let usecase: GetTopRatedMoviesUsecase
     
-    init(usecase: GetMovieListUsecase) {
+    init(usecase: GetTopRatedMoviesUsecase) {
         self.usecase = usecase
     }
     

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let datasource = MovieRemoteDataSourceImpl()
         let repository = MovieRepositoryImpl(remoteDataSource: datasource)
-        let usecase = GetMovieListUsecase(repository: repository)
+        let usecase = GetTopRatedMoviesUsecase(repository: repository)
         let viewModel = MovieListViewModel(usecase: usecase)
         window.rootViewController = HomeViewController(viewModel: viewModel)
         

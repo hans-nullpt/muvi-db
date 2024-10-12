@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol MovieRepository {
-    func getMovieList() async throws -> Observable<[Movie]>
+    func getTopRatedMovies() async throws -> Observable<[Movie]>
 }
