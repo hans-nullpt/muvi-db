@@ -51,7 +51,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "asaaa"
+        navigationController?.title = "aasdccc"
         observeTopRatedMovies()
         observePopularMovies()
         observeUpcomingMovies()
@@ -73,6 +74,15 @@ class HomeViewController: UIViewController {
     
     internal func configureCollectionView() {
         view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
         
         collectionView.register(
             TopRatedMovieCell.self,
