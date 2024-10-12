@@ -39,8 +39,9 @@ class MovieListViewModel {
             
             items.subscribe(
                 onNext: { [weak self] items in
-                    print("On Next")
-                    self?.topRatedMovies.accept(.success(items: items))
+                    guard let self else { return }
+                    
+                    self.topRatedMovies.accept(.success(items: items))
                 },
                 onError: { [weak self] error in
                     guard let self else { return }
@@ -62,8 +63,9 @@ class MovieListViewModel {
             
             items.subscribe(
                 onNext: { [weak self] items in
-                    print("On Next")
-                    self?.popularMovies.accept(.success(items: items))
+                    guard let self else { return }
+                    
+                    self.popularMovies.accept(.success(items: items))
                 },
                 onError: { [weak self] error in
                     guard let self else { return }
@@ -85,8 +87,9 @@ class MovieListViewModel {
             
             items.subscribe(
                 onNext: { [weak self] items in
-                    print("On Next")
-                    self?.upcomingMovies.accept(.success(items: items))
+                    guard let self else { return }
+                    
+                    self.upcomingMovies.accept(.success(items: items))
                 },
                 onError: { [weak self] error in
                     guard let self else { return }
