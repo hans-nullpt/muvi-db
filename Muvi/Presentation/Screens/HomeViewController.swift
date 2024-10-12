@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 
 class HomeViewController: UIViewController {
-    private let viewModel: MovieListViewModel
-    private let disposeBag = DisposeBag()
+    internal let viewModel: MovieListViewModel
+    internal let disposeBag = DisposeBag()
     
     init(viewModel: MovieListViewModel) {
         self.viewModel = viewModel
@@ -26,38 +26,27 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         Task {
+            try await viewModel.getTopRatedMovies()
+            try await viewModel.getPopularMovies()
             try await viewModel.getUpcomingMovies()
         }
         
-        viewModel.upcomingMovies.subscribe(
-            onNext: { [weak self] state in
-                switch state {
-                case .initial:
-                    print("Initial")
-                case .loading:
-                    print("Loading")
-                case .success(items: let items):
-                    print("Success: \(items.count)")
-                    
-                    for item in items {
-                        print(item.title)
-                    }
-                case .error(message: let message):
-                    print("Error: \(message)")
-                }
-            }
-        ).disposed(by: disposeBag)
+        observeTopRatedMovies()
+        observePopularMovies()
+        observeUpcomingMovies()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    internal func updateTopRatedMoviesState(for state: ViewState) {
+        
     }
-    */
+    
+    internal func updatePopularMoviesState(for state: ViewState) {
+        
+    }
+    
+    internal func updateUpcomingMoviesState(for state: ViewState) {
+        
+    }
 
 }
