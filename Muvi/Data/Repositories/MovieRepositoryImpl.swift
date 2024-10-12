@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 struct MovieRepositoryImpl: MovieRepository {
+    
     fileprivate let remoteDataSource: MovieRemoteDataSource
     
     init(remoteDataSource: MovieRemoteDataSource) {
@@ -16,8 +17,6 @@ struct MovieRepositoryImpl: MovieRepository {
     }
     
     func getTopRatedMovies() async throws -> Observable<[Movie]> {
-        print("Movie Repo: getMovieList()")
-        
         do {
             return try await remoteDataSource.getTopRatedMovies()
         } catch {
@@ -25,5 +24,12 @@ struct MovieRepositoryImpl: MovieRepository {
         }
     }
     
+    func getPopularMovies() async throws -> Observable<[Movie]> {
+        do {
+            return try await remoteDataSource.getPopularMovies()
+        } catch {
+            throw error
+        }
+    }
     
 }
