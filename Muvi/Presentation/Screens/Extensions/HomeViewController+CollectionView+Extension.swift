@@ -57,6 +57,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: HeaderCollectionReusableView.reusableId,
+            for: indexPath
+        ) as? HeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        
+        let section = sections[indexPath.section]
+        print(section.title)
+        supplementaryView.setTitle(section.title)
+        
+        return supplementaryView
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }

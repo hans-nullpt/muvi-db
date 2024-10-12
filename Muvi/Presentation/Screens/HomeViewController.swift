@@ -12,6 +12,18 @@ enum MovieSection {
     case topRated(items: [Movie])
     case popular(items: [Movie])
     case upcoming(items: [Movie])
+    
+    var title: String {
+        switch self {
+            
+        case .topRated:
+            ""
+        case .popular:
+            "Popular"
+        case .upcoming:
+            "Coming Soon"
+        }
+    }
 }
 
 class HomeViewController: UIViewController {
@@ -62,8 +74,20 @@ class HomeViewController: UIViewController {
     internal func configureCollectionView() {
         view.addSubview(collectionView)
         
-        collectionView.register(TopRatedMovieCell.self, forCellWithReuseIdentifier: TopRatedMovieCell.reusabledId)
-        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reusabledId)
+        collectionView.register(
+            TopRatedMovieCell.self,
+            forCellWithReuseIdentifier: TopRatedMovieCell.reusabledId
+        )
+        collectionView.register(
+            MovieCell.self,
+            forCellWithReuseIdentifier: MovieCell.reusabledId
+        )
+        collectionView.register(
+            HeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderCollectionReusableView.reusableId
+        )
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .systemBackground
@@ -91,6 +115,18 @@ class HomeViewController: UIViewController {
     }
     
     static func createCompositionalLayout(for section: Int) -> NSCollectionLayoutSection {
+        
+        let supplementaryViews = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(20)
+                ),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+        ]
+        
         switch section {
         case 0:
             // Item
@@ -115,6 +151,7 @@ class HomeViewController: UIViewController {
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .groupPaging
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 32, trailing: 0)
             
             return section
             
@@ -147,9 +184,10 @@ class HomeViewController: UIViewController {
             
             // Section
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 20, bottom: 0, trailing: 20)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 20, bottom: 32, trailing: 20)
             section.orthogonalScrollingBehavior = .continuous
             section.interGroupSpacing = 8
+            section.boundarySupplementaryItems = supplementaryViews
             
             return section
         }
