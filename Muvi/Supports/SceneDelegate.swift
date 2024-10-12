@@ -21,9 +21,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         let datasource = MovieRemoteDataSourceImpl()
+        
         let repository = MovieRepositoryImpl(remoteDataSource: datasource)
-        let usecase = GetTopRatedMoviesUsecase(repository: repository)
-        let viewModel = MovieListViewModel(usecase: usecase)
+        
+        let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
+        let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
+        let upcomingMoviesUsecase = GetUpcomingMoviesUsecase(repository: repository)
+        
+        let viewModel = MovieListViewModel(
+            topRatedMoviesUsecase: topRatedMoviesUsecase,
+            popularMoviesUsecase: popularMoviesUsecase,
+            upcomingMoviesUsecase: upcomingMoviesUsecase
+        )
+        
         window.rootViewController = HomeViewController(viewModel: viewModel)
         
         window.makeKeyAndVisible()

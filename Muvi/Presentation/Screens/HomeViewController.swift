@@ -26,10 +26,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         Task {
-            try await viewModel.getPopularMovies()
+            try await viewModel.getUpcomingMovies()
         }
         
-        viewModel.popularMovies.subscribe(
+        viewModel.upcomingMovies.subscribe(
             onNext: { [weak self] state in
                 switch state {
                 case .initial:
