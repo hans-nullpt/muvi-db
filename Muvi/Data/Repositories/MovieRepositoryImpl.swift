@@ -32,4 +32,12 @@ struct MovieRepositoryImpl: MovieRepository {
         }
     }
     
+    func getUpcomingMovies() async throws -> Observable<[Movie]> {
+        do {
+            return try await remoteDataSource.getUpcomingMovies()
+        } catch {
+            throw error
+        }
+    }
+    
 }
