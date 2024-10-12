@@ -8,22 +8,47 @@
 import UIKit
 
 class MuviTabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        viewControllers = [ homeViewController, populerViewController, favoriteViewController ]
+        tabBar.tintColor = .systemYellow
     }
     
+    lazy var homeViewController = {
+        let datasource = MovieRemoteDataSourceImpl()
+        
+        let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+        
+        let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
+        let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
+        let upcomingMoviesUsecase = GetUpcomingMoviesUsecase(repository: repository)
+        
+        let viewModel = MovieListViewModel(
+            topRatedMoviesUsecase: topRatedMoviesUsecase,
+            popularMoviesUsecase: popularMoviesUsecase,
+            upcomingMoviesUsecase: upcomingMoviesUsecase
+        )
+        
+        let viewController = HomeViewController(viewModel: viewModel)
+        viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 0)
+        
+        return viewController
+    }()
+    
+    lazy var populerViewController = {
+        let viewController = PopularMoviesViewController()
+        viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "rosette"), tag: 1)
+        
+        return viewController
+    }()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    lazy var favoriteViewController = {
+        let viewController = FavoriteViewController()
+        viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 1)
+        
+        return viewController
+    }()
+    
 }

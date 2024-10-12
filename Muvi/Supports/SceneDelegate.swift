@@ -19,28 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        
-        let datasource = MovieRemoteDataSourceImpl()
-        
-        let repository = MovieRepositoryImpl(remoteDataSource: datasource)
-        
-        let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
-        let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
-        let upcomingMoviesUsecase = GetUpcomingMoviesUsecase(repository: repository)
-        
-        let viewModel = MovieListViewModel(
-            topRatedMoviesUsecase: topRatedMoviesUsecase,
-            popularMoviesUsecase: popularMoviesUsecase,
-            upcomingMoviesUsecase: upcomingMoviesUsecase
-        )
-        
-        window.rootViewController = HomeViewController(viewModel: viewModel)
+        window.rootViewController = MuviTabBarViewController()
         window.overrideUserInterfaceStyle = .dark
         window.makeKeyAndVisible()
         
         self.window = window
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
