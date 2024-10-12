@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         
         window.rootViewController = HomeViewController(viewModel: viewModel)
-        
+        window.overrideUserInterfaceStyle = .dark
         window.makeKeyAndVisible()
         
         self.window = window
