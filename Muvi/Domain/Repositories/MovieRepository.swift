@@ -11,4 +11,5 @@ import RxSwift
 protocol MovieRepository {
     func getTopRatedMovies() async throws -> Observable<[Movie]>
     func getPopularMovies() async throws -> Observable<[Movie]>
+    func getUpcomingMovies() async throws -> Observable<[Movie]>
 }

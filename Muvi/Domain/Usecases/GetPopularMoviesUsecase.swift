@@ -12,7 +12,7 @@ struct GetPopularMoviesUsecase {
     var repository: MovieRepository
     
     func execute() async throws -> Observable<[Movie]> {
-        print("GetMovieListUsecase")
+        print("GetPopularMoviesUsecase")
         
         do {
             let items = try await repository.getPopularMovies()
