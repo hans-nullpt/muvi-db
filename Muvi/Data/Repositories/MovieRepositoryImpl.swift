@@ -15,11 +15,11 @@ struct MovieRepositoryImpl: MovieRepository {
         self.remoteDataSource = remoteDataSource
     }
     
-    func getMovieList() async throws -> Observable<[Movie]> {
+    func getTopRatedMovies() async throws -> Observable<[Movie]> {
         print("Movie Repo: getMovieList()")
         
         do {
-            return try await remoteDataSource.getMovieList()
+            return try await remoteDataSource.getTopRatedMovies()
         } catch {
             throw error
         }

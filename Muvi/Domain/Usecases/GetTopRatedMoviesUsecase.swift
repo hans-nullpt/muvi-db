@@ -8,14 +8,14 @@
 import Foundation
 import RxSwift
 
-struct GetMovieListUsecase {
+struct GetTopRatedMoviesUsecase {
     var repository: MovieRepository
     
     func execute() async throws -> Observable<[Movie]> {
         print("GetMovieListUsecase")
         
         do {
-            let items = try await repository.getMovieList()
+            let items = try await repository.getTopRatedMovies()
             return items
         } catch {
             throw error

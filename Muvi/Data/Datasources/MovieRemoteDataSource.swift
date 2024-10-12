@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol MovieRemoteDataSource {
-    func getMovieList() async throws ->  Observable<[Movie]>
+    func getTopRatedMovies() async throws ->  Observable<[Movie]>
 }
 
 enum MovieApiError: Error {
@@ -19,8 +19,10 @@ enum MovieApiError: Error {
 }
 
 struct MovieRemoteDataSourceImpl: MovieRemoteDataSource {
-    func getMovieList() async throws -> Observable<[Movie]> {
-        let endpoint = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=500"
+    private let baseUrl = "https://api.themoviedb.org/3"
+    
+    func getTopRatedMovies() async throws -> Observable<[Movie]> {
+        let endpoint = "\(baseUrl)/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=500"
         
         guard let url = URL(string: endpoint) else {
             throw MovieApiError.urlError
