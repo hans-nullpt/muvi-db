@@ -51,11 +51,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "asaaa"
-        navigationController?.title = "aasdccc"
-        observeTopRatedMovies()
-        observePopularMovies()
-        observeUpcomingMovies()
         
         configureCollectionView()
         
@@ -64,6 +59,40 @@ class HomeViewController: UIViewController {
             try await viewModel.getPopularMovies()
             try await viewModel.getUpcomingMovies()
         }
+        
+        
+        observeTopRatedMovies()
+        observePopularMovies()
+        observeUpcomingMovies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let label = UILabel()
+        
+        let muviLabelAttr: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 32, weight: .bold)
+        ]
+        
+        let dbLabelAttr = [
+            .font: UIFont.systemFont(ofSize: 32, weight: .bold),
+            NSAttributedString.Key.foregroundColor: UIColor.systemYellow
+        ]
+        
+        let muviLabelAttrString = NSMutableAttributedString(string: "Muvi", attributes: muviLabelAttr)
+        
+        let dbLabelAttrString  = NSAttributedString(string: "DB", attributes: dbLabelAttr)
+        
+        muviLabelAttrString.append(dbLabelAttrString)
+        
+        label.attributedText = muviLabelAttrString
+        
+        let title = UIBarButtonItem()
+        title.customView = label
+        navigationItem.leftBarButtonItem = title
+        
+        
     }
     
     override func viewDidLayoutSubviews() {

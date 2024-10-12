@@ -16,7 +16,7 @@ class MuviTabBarViewController: UITabBarController {
         tabBar.tintColor = .systemYellow
     }
     
-    lazy var homeViewController = {
+    lazy var homeViewController: UINavigationController = {
         let datasource = MovieRemoteDataSourceImpl()
         
         let repository = MovieRepositoryImpl(remoteDataSource: datasource)
@@ -34,21 +34,21 @@ class MuviTabBarViewController: UITabBarController {
         let viewController = HomeViewController(viewModel: viewModel)
         viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 0)
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }()
     
-    lazy var populerViewController = {
+    lazy var populerViewController: UINavigationController = {
         let viewController = PopularMoviesViewController()
         viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "rosette"), tag: 1)
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }()
 
-    lazy var favoriteViewController = {
+    lazy var favoriteViewController: UINavigationController = {
         let viewController = FavoriteViewController()
         viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 1)
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }()
     
 }
