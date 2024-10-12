@@ -43,7 +43,6 @@ struct MovieRemoteDataSourceImpl: MovieRemoteDataSource {
         
         do {
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             let response = try decoder.decode(MovieResult.self, from: data)
             let items = response.results ?? []
@@ -74,7 +73,6 @@ struct MovieRemoteDataSourceImpl: MovieRemoteDataSource {
         
         do {
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             let response = try decoder.decode(MovieResult.self, from: data)
             let items = response.results ?? []
@@ -105,7 +103,6 @@ struct MovieRemoteDataSourceImpl: MovieRemoteDataSource {
         
         do {
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             let response = try decoder.decode(MovieResult.self, from: data)
             let items = response.results ?? []
