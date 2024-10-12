@@ -14,7 +14,9 @@ extension HomeViewController {
             onNext: { [weak self] state in
                 guard let self else { return }
                 
-                self.updateTopRatedMoviesState(for: state)
+                DispatchQueue.main.async {
+                    self.updateTopRatedMoviesState(for: state)
+                }
             }
         ).disposed(by: disposeBag)
     }
@@ -24,7 +26,9 @@ extension HomeViewController {
             onNext: { [weak self] state in
                 guard let self else { return }
                 
-                self.updatePopularMoviesState(for: state)
+                DispatchQueue.main.async {
+                    self.updatePopularMoviesState(for: state)
+                }
             }
         ).disposed(by: disposeBag)
     }
@@ -34,7 +38,9 @@ extension HomeViewController {
             onNext: { [weak self] state in
                 guard let self else { return }
                 
-                self.updateTopRatedMoviesState(for: state)
+                DispatchQueue.main.async {
+                    self.updateUpcomingMoviesState(for: state)
+                }
             }
         ).disposed(by: disposeBag)
     }
