@@ -44,5 +44,22 @@ extension HomeViewController {
             }
         ).disposed(by: disposeBag)
     }
+
+    internal func updateTopRatedMoviesState(for state: ViewState) {
+        if case .success(let items) = state {
+            updateCollectionViewData(with: items, for: .topRated)
+        }
+    }
     
+    internal func updatePopularMoviesState(for state: ViewState) {
+        if case .success(let items) = state {
+            updateCollectionViewData(with: items, for: .popular)
+        }
+    }
+    
+    internal func updateUpcomingMoviesState(for state: ViewState) {
+        if case .success(let items) = state {
+            updateCollectionViewData(with: items, for: .upcoming)
+        }
+    }
 }

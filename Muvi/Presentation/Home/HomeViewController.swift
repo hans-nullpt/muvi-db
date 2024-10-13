@@ -62,8 +62,7 @@ class HomeViewController: UIViewController {
             try await viewModel.getPopularMovies()
             try await viewModel.getUpcomingMovies()
         }
-        
-        
+         
         observeTopRatedMovies()
         observePopularMovies()
         observeUpcomingMovies()
@@ -101,24 +100,6 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         collectionView.frame = view.bounds
-    }
-
-    internal func updateTopRatedMoviesState(for state: ViewState) {
-        if case .success(let items) = state {
-            updateCollectionViewData(with: items, for: .topRated)
-        }
-    }
-    
-    internal func updatePopularMoviesState(for state: ViewState) {
-        if case .success(let items) = state {
-            updateCollectionViewData(with: items, for: .popular)
-        }
-    }
-    
-    internal func updateUpcomingMoviesState(for state: ViewState) {
-        if case .success(let items) = state {
-            updateCollectionViewData(with: items, for: .upcoming)
-        }
     }
     
     static func createCompositionalLayout(for section: Int) -> NSCollectionLayoutSection {
