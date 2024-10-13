@@ -14,7 +14,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch section {
             
         case .topRated(items: let items):
-            return items.count
+            return min(items.count, 5)
         case .popular(items: let items):
             return items.count
         case .upcoming(items: let items):
