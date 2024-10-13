@@ -47,7 +47,10 @@ extension HomeViewController {
 
     internal func updateTopRatedMoviesState(for state: ViewState) {
         if case .success(let items) = state {
-            updateCollectionViewData(with: items, for: .topRated)
+            let minCount = min(5, items.count - 1)
+            let movies = Array(items[0...minCount])
+            
+            updateCollectionViewData(with: movies, for: .topRated)
         }
     }
     
