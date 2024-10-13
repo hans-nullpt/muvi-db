@@ -32,12 +32,7 @@ class HomeViewController: UIViewController {
     internal let viewModel: MovieListViewModel
     internal let disposeBag = DisposeBag()
     
-    internal let collectionView: UICollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewCompositionalLayout { index, _ in
-            HomeViewController.createCompositionalLayout(for: index)
-        }
-    )
+    internal var collectionView: UICollectionView!
     
     internal var datasource: MovieDataSource!
     
@@ -100,85 +95,6 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         collectionView.frame = view.bounds
-    }
-    
-    static func createCompositionalLayout(for section: Int) -> NSCollectionLayoutSection {
-        
-        let supplementaryViews = [
-            NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(20)
-                ),
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-        ]
-        
-        switch section {
-        case 0:
-            // Item
-            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
-            ))
-            
-            item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
-            
-            // Group
-            
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(259)
-                ),
-                subitem: item,
-                count: 1
-            )
-            
-            // Section
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPaging
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 32, trailing: 0)
-            
-            return section
-            
-        default:
-            // Item
-            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
-            ))
-            
-            // Group
-            let verticalGroup = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .fractionalHeight(1.0)
-                ),
-                subitem: item,
-                count: 1
-            )
-            
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(0.85),
-                    heightDimension: .absolute(157)
-                ),
-                subitem: verticalGroup,
-                count: 3
-            )
-            group.interItemSpacing = NSCollectionLayoutSpacing.fixed(8)
-            
-            // Section
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 20, bottom: 32, trailing: 20)
-            section.orthogonalScrollingBehavior = .continuous
-            section.interGroupSpacing = 8
-            section.boundarySupplementaryItems = supplementaryViews
-            
-            return section
-        }
     }
 
 }
