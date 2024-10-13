@@ -7,57 +7,95 @@
 
 import UIKit
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = sections[section]
+extension HomeViewController {
+    internal func configureCollectionView() {
+        view.addSubview(collectionView)
         
-        switch section {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+        
+        collectionView.register(
+            TopRatedMovieCell.self,
+            forCellWithReuseIdentifier: TopRatedMovieCell.reusabledId
+        )
+        collectionView.register(
+            MovieCell.self,
+            forCellWithReuseIdentifier: MovieCell.reusabledId
+        )
+        collectionView.register(
+            HeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderCollectionReusableView.reusableId
+        )
+        
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        
+    }
+    
+    internal func configureDataSource() {
+        datasource = MovieDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, movie in
+            guard let self else { return nil }
             
-        case .topRated(items: let items):
-            return min(items.count, 5)
-        case .popular(items: let items):
-            return items.count
-        case .upcoming(items: let items):
-            return items.count
+            switch indexPath.section {
+            case 0:
+                return self.createTopRatedMovieCell(at: indexPath, movie: movie)
+            default:
+                return self.createDefaultMovieCell(at: indexPath, movie: movie)
+            }
+        }
+        
+        datasource.supplementaryViewProvider = configureSupplementaryViewProvider
+    }
+    
+    internal func updateCollectionViewData(
+        with movies: [Movie],
+        for section: MovieSection
+    ) {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<Movie>()
+        snapshot.append(movies)
+        
+        DispatchQueue.main.async {
+            self.datasource.apply(snapshot, to: section)
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let section = sections[indexPath.section]
+    private func createTopRatedMovieCell(at indexPath: IndexPath, movie: Movie) -> UICollectionViewCell? {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TopRatedMovieCell.reusabledId,
+            for: indexPath
+        ) as? TopRatedMovieCell
         
-        switch section {
-            
-        case .topRated(items: let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedMovieCell.reusabledId, for: indexPath) as? TopRatedMovieCell
-            
-            guard let cell else { return UICollectionViewCell() }
-            
-            cell.backgroundColor = .systemPink
-            cell.updateData(with: items[indexPath.item])
-            
-            return cell
-        case .popular(items: let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reusabledId, for: indexPath) as? MovieCell
-            
-            guard let cell else { return UICollectionViewCell() }
-            
-            cell.backgroundColor = .systemBlue
-            cell.updateData(with: items[indexPath.item])
-            
-            return cell
-        case .upcoming(items: let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reusabledId, for: indexPath) as? MovieCell
-            
-            guard let cell else { return UICollectionViewCell() }
-            
-            cell.backgroundColor = .systemGreen
-            cell.updateData(with: items[indexPath.item])
-            
-            return cell
-        }
+        guard let cell else { return nil }
+        
+        cell.backgroundColor = .systemPink
+        cell.updateData(with: movie)
+        
+        return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    private func createDefaultMovieCell(at indexPath: IndexPath, movie: Movie) -> UICollectionViewCell? {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MovieCell.reusabledId,
+            for: indexPath
+        ) as? MovieCell
+        
+        guard let cell else { return nil }
+        
+        cell.backgroundColor = .systemGreen
+        cell.updateData(with: movie)
+        
+        return cell
+    }
+    
+    private func configureSupplementaryViewProvider(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? {
+        
         guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: HeaderCollectionReusableView.reusableId,
@@ -66,15 +104,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionReusableView()
         }
         
-        let section = sections[indexPath.section]
-        print(section.title)
+        let section = MovieSection.allCases[indexPath.section]
         supplementaryView.setTitle(section.title)
-        
+
         return supplementaryView
+        
     }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
-    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
     
 }

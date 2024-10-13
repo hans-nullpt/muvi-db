@@ -22,7 +22,7 @@ struct MovieResult: Codable {
     }
 }
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
 
     var popularity: Double?
     var voteCount: Int?
