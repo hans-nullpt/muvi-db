@@ -8,10 +8,10 @@
 import UIKit
 import RxSwift
 
-enum MovieSection {
-    case topRated(items: [Movie])
-    case popular(items: [Movie])
-    case upcoming(items: [Movie])
+enum MovieSection: CaseIterable, Hashable {
+    case topRated
+    case popular
+    case upcoming
     
     var title: String {
         switch self {
@@ -27,17 +27,19 @@ enum MovieSection {
 }
 
 class HomeViewController: UIViewController {
+    typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieSection, Movie>
+    
     internal let viewModel: MovieListViewModel
     internal let disposeBag = DisposeBag()
     
-    var sections = [MovieSection]()
-    
-    private let collectionView: UICollectionView = UICollectionView(
+    internal let collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewCompositionalLayout { index, _ in
             HomeViewController.createCompositionalLayout(for: index)
         }
     )
+    
+    internal var datasource: MovieDataSource!
     
     init(viewModel: MovieListViewModel) {
         self.viewModel = viewModel
@@ -53,6 +55,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         configureCollectionView()
+        configureDataSource()
         
         Task {
             try await viewModel.getTopRatedMovies()
@@ -92,7 +95,6 @@ class HomeViewController: UIViewController {
         title.customView = label
         navigationItem.leftBarButtonItem = title
         
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -100,57 +102,23 @@ class HomeViewController: UIViewController {
         
         collectionView.frame = view.bounds
     }
-    
-    internal func configureCollectionView() {
-        view.addSubview(collectionView)
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
-        
-        collectionView.register(
-            TopRatedMovieCell.self,
-            forCellWithReuseIdentifier: TopRatedMovieCell.reusabledId
-        )
-        collectionView.register(
-            MovieCell.self,
-            forCellWithReuseIdentifier: MovieCell.reusabledId
-        )
-        collectionView.register(
-            HeaderCollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: HeaderCollectionReusableView.reusableId
-        )
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .systemBackground
-    }
 
     internal func updateTopRatedMoviesState(for state: ViewState) {
         if case .success(let items) = state {
-            sections.append(.topRated(items: items))
+            updateCollectionViewData(with: items, for: .topRated)
         }
-        collectionView.reloadData()
     }
     
     internal func updatePopularMoviesState(for state: ViewState) {
         if case .success(let items) = state {
-            sections.append(.popular(items: items))
+            updateCollectionViewData(with: items, for: .popular)
         }
-        collectionView.reloadData()
     }
     
     internal func updateUpcomingMoviesState(for state: ViewState) {
         if case .success(let items) = state {
-            sections.append(.upcoming(items: items))
+            updateCollectionViewData(with: items, for: .upcoming)
         }
-        collectionView.reloadData()
     }
     
     static func createCompositionalLayout(for section: Int) -> NSCollectionLayoutSection {
