@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FavoriteViewController: UIViewController {
 
@@ -26,10 +27,9 @@ class FavoriteViewController: UIViewController {
         label.text = "Favorites Movies"
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
+        label.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
 
 
