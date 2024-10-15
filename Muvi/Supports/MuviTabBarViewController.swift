@@ -43,9 +43,11 @@ class MuviTabBarViewController: UITabBarController {
     let repository = MovieRepositoryImpl(remoteDataSource: datasource)
     
     let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
+    let searchMoviesUsecase = SearchMoviesUsecase(repository: repository)
     
     let viewModel = PopularMovieListViewModel(
-      popularMoviesUsecase: popularMoviesUsecase
+      popularMoviesUsecase: popularMoviesUsecase,
+      searchMoviesUsecase: searchMoviesUsecase
     )
     
     let viewController = PopularMoviesViewController(viewModel: viewModel)
