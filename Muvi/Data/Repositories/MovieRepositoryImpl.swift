@@ -40,4 +40,12 @@ struct MovieRepositoryImpl: MovieRepository {
     }
   }
   
+  func searchMovies(_ keyword: String) async throws -> Observable<[Movie]> {
+    do {
+      return try await remoteDataSource.searchMovies(keyword)
+    } catch {
+      throw error
+    }
+  }
+  
 }
