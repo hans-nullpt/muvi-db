@@ -54,6 +54,8 @@ class PopularMoviesViewController: UIViewController {
   internal func configureSearchField() {
     view.addSubview(searchField)
     
+    searchField.delegate = self
+    
     searchField.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(20)
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
