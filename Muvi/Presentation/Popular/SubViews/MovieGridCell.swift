@@ -27,11 +27,13 @@ class MovieGridCell: UICollectionViewCell {
   
   func updateData(with movie: Movie) {
     
-    Task {
-      imageView.image = (await Helper.downloadImage(from: movie.posterPath ?? "")) ?? UIImage(systemName: "photo.badge.exclamationmark")
+    if let posterPath = movie.posterPath {
+      let url = "https://image.tmdb.org/t/p/w500\(posterPath)"
+      Task {
+        imageView.image = await Helper.downloadImage(from: url) ?? UIImage(systemName: "circle")
+      }
     }
     
-    imageView.backgroundColor = .lightGray
     titleLabel.text = movie.title
     overviewLabel.text = movie.overview
   }
