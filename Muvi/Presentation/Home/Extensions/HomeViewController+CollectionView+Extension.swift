@@ -18,8 +18,6 @@ extension HomeViewController {
     
     view.addSubview(collectionView)
     
-    collectionView.translatesAutoresizingMaskIntoConstraints = false
-    
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }

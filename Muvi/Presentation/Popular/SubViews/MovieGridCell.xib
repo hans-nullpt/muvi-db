@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieGridCell" customModule="Muvi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="256"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="256"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yEI-2x-Jrd">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="209.66666666666666"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MovieTitle" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xd-tL-gp2">
+                        <rect key="frame" x="0.0" y="225.66666666666666" width="160" height="14.333333333333343"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MovieOverview" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSz-Di-NAj">
+                        <rect key="frame" x="0.0" y="244" width="160" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" systemColor="underPageBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="6Xd-tL-gp2" secondAttribute="trailing" id="4KC-sm-Z3I"/>
+                <constraint firstItem="bSz-Di-NAj" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="8Sy-aA-fuy"/>
+                <constraint firstItem="yEI-2x-Jrd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8aA-aL-l5r"/>
+                <constraint firstItem="6Xd-tL-gp2" firstAttribute="top" secondItem="yEI-2x-Jrd" secondAttribute="bottom" constant="16" id="9sJ-KY-rvA"/>
+                <constraint firstItem="6Xd-tL-gp2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DDf-ew-Nav"/>
+                <constraint firstItem="bSz-Di-NAj" firstAttribute="top" secondItem="6Xd-tL-gp2" secondAttribute="bottom" constant="4" id="NBu-kN-PC6"/>
+                <constraint firstAttribute="top" secondItem="yEI-2x-Jrd" secondAttribute="top" id="Tye-UU-1Io"/>
+                <constraint firstItem="yEI-2x-Jrd" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="XqP-0B-ReJ"/>
+                <constraint firstAttribute="bottom" secondItem="bSz-Di-NAj" secondAttribute="bottom" id="YsC-yD-TaN"/>
+                <constraint firstItem="bSz-Di-NAj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="doL-if-FoM"/>
+                <constraint firstItem="yEI-2x-Jrd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="v3K-OY-tjT"/>
+            </constraints>
+            <size key="customSize" width="88" height="214"/>
+            <connections>
+                <outlet property="imageView" destination="yEI-2x-Jrd" id="btM-jG-f2f"/>
+                <outlet property="overviewLabel" destination="bSz-Di-NAj" id="ijH-72-U0M"/>
+                <outlet property="titleLabel" destination="6Xd-tL-gp2" id="msP-9z-un6"/>
+            </connections>
+            <point key="canvasLocation" x="167.93893129770993" y="77.464788732394368"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="underPageBackgroundColor">
+            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
