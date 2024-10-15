@@ -38,7 +38,17 @@ class MuviTabBarViewController: UITabBarController {
   }()
   
   lazy var populerViewController: UINavigationController = {
-    let viewController = PopularMoviesViewController()
+    let datasource = MovieRemoteDataSourceImpl()
+    
+    let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+    
+    let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
+    
+    let viewModel = PopularMovieListViewModel(
+      popularMoviesUsecase: popularMoviesUsecase
+    )
+    
+    let viewController = PopularMoviesViewController(viewModel: viewModel)
     viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "rosette"), tag: 1)
     
     return UINavigationController(rootViewController: viewController)
@@ -46,7 +56,7 @@ class MuviTabBarViewController: UITabBarController {
   
   lazy var favoriteViewController: UINavigationController = {
     let viewController = FavoriteViewController()
-    viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 1)
+    viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 2)
     
     return UINavigationController(rootViewController: viewController)
   }()
