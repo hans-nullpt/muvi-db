@@ -12,6 +12,16 @@ class PopularMoviesViewController: UIViewController {
   typealias MovieDataSource = UICollectionViewDiffableDataSource<Int, Movie>
   
   internal var collectionView: UICollectionView!
+  internal lazy var searchField: UITextField = {
+    let field = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40))
+    field.placeholder = "Search Movie"
+    field.rightView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+    field.tintColor = .systemYellow
+    field.rightViewMode = .always
+    
+    return field
+  }()
+  
   internal var datasource: MovieDataSource!
   
   internal let viewModel: PopularMovieListViewModel
@@ -30,6 +40,7 @@ class PopularMoviesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    configureSearchField()
     configureCollectionView()
     configureDataSource()
     
@@ -38,6 +49,15 @@ class PopularMoviesViewController: UIViewController {
     }
     
     observeMovies()
+  }
+  
+  internal func configureSearchField() {
+    view.addSubview(searchField)
+    
+    searchField.snp.makeConstraints { make in
+      make.leading.trailing.equalToSuperview().inset(20)
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+    }
   }
   
 }

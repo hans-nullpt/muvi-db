@@ -15,7 +15,8 @@ extension PopularMoviesViewController {
     view.addSubview(collectionView)
     
     collectionView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.equalTo(searchField.snp.bottom).offset(24)
+      make.leading.trailing.bottom.equalToSuperview()
     }
     
     collectionView.register(MovieGridCell.nib(), forCellWithReuseIdentifier: MovieGridCell.reusableId)
