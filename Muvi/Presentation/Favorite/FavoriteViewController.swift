@@ -9,28 +9,28 @@ import UIKit
 import SnapKit
 
 class FavoriteViewController: UIViewController {
-
-    private let label = UILabel()
+  
+  private let label = UILabel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        configureLabel()
-    }
+    configureLabel()
+  }
+  
+  
+  private func configureLabel() {
+    view.addSubview(label)
     
-
-    private func configureLabel() {
-        view.addSubview(label)
-        
-        label.font = .preferredFont(forTextStyle: .title2)
-        label.textColor = .white
-        label.text = "Favorites Movies"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
+    label.font = .preferredFont(forTextStyle: .title2)
+    label.textColor = .white
+    label.text = "Favorites Movies"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    
+    label.snp.makeConstraints { make in
+      make.center.equalToSuperview()
     }
-
-
+  }
+  
+  
 }

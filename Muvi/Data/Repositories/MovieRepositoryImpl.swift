@@ -9,35 +9,35 @@ import Foundation
 import RxSwift
 
 struct MovieRepositoryImpl: MovieRepository {
-    
-    fileprivate let remoteDataSource: MovieRemoteDataSource
-    
-    init(remoteDataSource: MovieRemoteDataSource) {
-        self.remoteDataSource = remoteDataSource
+  
+  fileprivate let remoteDataSource: MovieRemoteDataSource
+  
+  init(remoteDataSource: MovieRemoteDataSource) {
+    self.remoteDataSource = remoteDataSource
+  }
+  
+  func getTopRatedMovies() async throws -> Observable<[Movie]> {
+    do {
+      return try await remoteDataSource.getTopRatedMovies()
+    } catch {
+      throw error
     }
-    
-    func getTopRatedMovies() async throws -> Observable<[Movie]> {
-        do {
-            return try await remoteDataSource.getTopRatedMovies()
-        } catch {
-            throw error
-        }
+  }
+  
+  func getPopularMovies() async throws -> Observable<[Movie]> {
+    do {
+      return try await remoteDataSource.getPopularMovies()
+    } catch {
+      throw error
     }
-    
-    func getPopularMovies() async throws -> Observable<[Movie]> {
-        do {
-            return try await remoteDataSource.getPopularMovies()
-        } catch {
-            throw error
-        }
+  }
+  
+  func getUpcomingMovies() async throws -> Observable<[Movie]> {
+    do {
+      return try await remoteDataSource.getUpcomingMovies()
+    } catch {
+      throw error
     }
-    
-    func getUpcomingMovies() async throws -> Observable<[Movie]> {
-        do {
-            return try await remoteDataSource.getUpcomingMovies()
-        } catch {
-            throw error
-        }
-    }
-    
+  }
+  
 }

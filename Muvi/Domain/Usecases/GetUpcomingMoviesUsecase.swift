@@ -9,16 +9,9 @@ import Foundation
 import RxSwift
 
 struct GetUpcomingMoviesUsecase {
-    var repository: MovieRepository
-    
-    func execute() async throws -> Observable<[Movie]> {
-        print("GetUpcomingMoviesUsecase")
-        
-        do {
-            let items = try await repository.getUpcomingMovies()
-            return items
-        } catch {
-            throw error
-        }
-    }
+  var repository: MovieRepository
+  
+  func execute() async throws -> Observable<[Movie]> {
+    try await repository.getUpcomingMovies()
+  }
 }
