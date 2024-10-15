@@ -12,6 +12,7 @@
 		906B04DA2CB92B3200730773 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04D92CB92B3200730773 /* RxCocoa */; };
 		906B04DC2CB92B3700730773 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04DB2CB92B3700730773 /* RxBlocking */; };
 		906B04DE2CB92B3B00730773 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 906B04DD2CB92B3B00730773 /* RxRelay */; };
+		90EEDB9B2CBD536C003DFD8B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 90EEDB9A2CBD536C003DFD8B /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 				906B04DE2CB92B3B00730773 /* RxRelay in Frameworks */,
 				906B04DA2CB92B3200730773 /* RxCocoa in Frameworks */,
 				906B04DC2CB92B3700730773 /* RxBlocking in Frameworks */,
+				90EEDB9B2CBD536C003DFD8B /* Alamofire in Frameworks */,
 				906B04C52CB927AE00730773 /* RxSwift in Frameworks */,
 				906B04C02CB9275500730773 /* SnapKit in Frameworks */,
 			);
@@ -118,6 +120,7 @@
 				906B04D92CB92B3200730773 /* RxCocoa */,
 				906B04DB2CB92B3700730773 /* RxBlocking */,
 				906B04DD2CB92B3B00730773 /* RxRelay */,
+				90EEDB9A2CBD536C003DFD8B /* Alamofire */,
 			);
 			productName = Muvi;
 			productReference = 9048F1A52CB8C9E200D0FC34 /* Muvi.app */;
@@ -150,6 +153,7 @@
 			packageReferences = (
 				906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				906B04BE2CB9275500730773 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				90EEDB992CBD536C003DFD8B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9048F1A62CB8C9E200D0FC34 /* Products */;
@@ -395,6 +399,14 @@
 				version = 5.7.1;
 			};
 		};
+		90EEDB992CBD536C003DFD8B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +434,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 906B04BD2CB9274300730773 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		90EEDB9A2CBD536C003DFD8B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90EEDB992CBD536C003DFD8B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
