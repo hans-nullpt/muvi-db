@@ -190,5 +190,21 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    var item: Movie
+    
+    switch indexPath.section {
+    case 0:
+      item = topRatedMovies[indexPath.item]
+    case 1:
+      item = popularMovies[indexPath.item]
+    default:
+      item = upcomingMovies[indexPath.item]
+    }
+    
+    let vc = MovieDetailViewController()
+    vc.id = item.id
+    navigationController?.pushViewController(vc, animated: true)
+  }
 }
