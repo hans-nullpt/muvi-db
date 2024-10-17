@@ -48,4 +48,12 @@ struct MovieRepositoryImpl: MovieRepository {
     }
   }
   
+  func getMovie(by id: Int) async throws -> RxSwift.Observable<MovieDetail> {
+    do {
+      return try await remoteDataSource.getMovie(by: id)
+    } catch {
+      throw error
+    }
+  }
+  
 }
