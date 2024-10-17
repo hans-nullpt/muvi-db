@@ -57,6 +57,9 @@ class HomeViewController: UIViewController {
   }()
   
   internal var datasource: MovieDataSource!
+  internal var topRatedMovies: [Movie] = []
+  internal var popularMovies: [Movie] = []
+  internal var upcomingMovies: [Movie] = []
   
   init(viewModel: MovieListViewModel) {
     self.viewModel = viewModel
