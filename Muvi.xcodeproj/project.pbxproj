@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90D0FD7C2CC095E10017BD86 /* GetMovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0FD7B2CC095E10017BD86 /* GetMovieDetail.swift */; };
 		90F458002CBF9F1C001A4CB0 /* MovieGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F457ED2CBF9F1C001A4CB0 /* MovieGridCell.xib */; };
 		90F458012CBF9F1C001A4CB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F457F72CBF9F1C001A4CB0 /* Assets.xcassets */; };
 		90F458022CBF9F1C001A4CB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F457F92CBF9F1C001A4CB0 /* LaunchScreen.storyboard */; };
@@ -58,6 +59,7 @@
 		25105CA305B4E98040F3075A /* Pods_Muvi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Muvi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5D8FCDB2DEEC39A2593512 /* Pods-Muvi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Muvi.release.xcconfig"; path = "Target Support Files/Pods-Muvi/Pods-Muvi.release.xcconfig"; sourceTree = "<group>"; };
 		9048F1A52CB8C9E200D0FC34 /* Muvi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D0FD7B2CC095E10017BD86 /* GetMovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovieDetail.swift; sourceTree = "<group>"; };
 		90F457CC2CBF9F1C001A4CB0 /* MovieRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRemoteDataSource.swift; sourceTree = "<group>"; };
 		90F457CE2CBF9F1C001A4CB0 /* MovieRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryImpl.swift; sourceTree = "<group>"; };
 		90F457D12CBF9F1C001A4CB0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -130,6 +132,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		90D0FD6B2CC0937D0017BD86 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		90D0FD6F2CC0937D0017BD86 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		90D0FD712CC0937D0017BD86 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		90D0FD732CC0937D0017BD86 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				90D0FD6B2CC0937D0017BD86 /* Extensions */,
+				90D0FD6F2CC0937D0017BD86 /* SubViews */,
+				90D0FD712CC0937D0017BD86 /* ViewModels */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		90F457CD2CBF9F1C001A4CB0 /* Datasources */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +207,7 @@
 		90F457D92CBF9F1C001A4CB0 /* Usecases */ = {
 			isa = PBXGroup;
 			children = (
+				90D0FD7B2CC095E10017BD86 /* GetMovieDetail.swift */,
 				90F457D52CBF9F1C001A4CB0 /* GetPopularMoviesUsecase.swift */,
 				90F457D62CBF9F1C001A4CB0 /* GetTopRatedMoviesUsecase.swift */,
 				90F457D72CBF9F1C001A4CB0 /* GetUpcomingMoviesUsecase.swift */,
@@ -279,6 +313,7 @@
 		90F457F32CBF9F1C001A4CB0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				90D0FD732CC0937D0017BD86 /* Detail */,
 				90F457DC2CBF9F1C001A4CB0 /* Favorite */,
 				90F457E72CBF9F1C001A4CB0 /* Home */,
 				90F457F22CBF9F1C001A4CB0 /* Popular */,
@@ -451,6 +486,7 @@
 				90F458042CBF9F1C001A4CB0 /* MovieRemoteDataSource.swift in Sources */,
 				90F458052CBF9F1C001A4CB0 /* MovieRepositoryImpl.swift in Sources */,
 				90F458062CBF9F1C001A4CB0 /* Movie.swift in Sources */,
+				90D0FD7C2CC095E10017BD86 /* GetMovieDetail.swift in Sources */,
 				90F458072CBF9F1C001A4CB0 /* MovieRepository.swift in Sources */,
 				90F458082CBF9F1C001A4CB0 /* GetPopularMoviesUsecase.swift in Sources */,
 				90F458092CBF9F1C001A4CB0 /* GetTopRatedMoviesUsecase.swift in Sources */,

@@ -14,6 +14,7 @@ protocol MovieRemoteDataSource {
   func getPopularMovies() async throws -> Observable<[Movie]>
   func getUpcomingMovies() async throws -> Observable<[Movie]>
   func searchMovies(_ keyword: String) async throws -> Observable<[Movie]>
+  func getMovie(by id: Int) async throws -> Observable<MovieDetail>
 }
 
 enum MovieApiError: Error {
@@ -109,6 +110,26 @@ struct MovieRemoteDataSourceImpl: MovieRemoteDataSource {
       let items = (try response.result.get()).results
       
       return Observable.from([items ?? []])
+    } catch {
+      print(error.localizedDescription)
+      throw MovieApiError.invalidData
+    }
+  }
+  
+  func getMovie(by id: Int) async throws -> Observable<MovieDetail> {
+    let endpoint = "\(baseUrl)/movie/\(id)?language=en-US"
+    
+    let headers: HTTPHeaders = [
+      .authorization(bearerToken: accessToken)
+    ]
+    
+    do {
+      
+      let response = await AF.request(endpoint, method: .get, headers: headers)
+        .serializingDecodable(MovieDetail.self)
+        .response
+      
+      return Observable.from([try response.result.get()])
     } catch {
       print(error.localizedDescription)
       throw MovieApiError.invalidData
