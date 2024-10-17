@@ -13,4 +13,5 @@ protocol MovieRepository {
   func getPopularMovies() async throws -> Observable<[Movie]>
   func getUpcomingMovies() async throws -> Observable<[Movie]>
   func searchMovies(_ keyword: String) async throws -> Observable<[Movie]>
+  func getMovie(by id: Int) async throws -> Observable<MovieDetail>
 }
