@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 
 class PopularMovieListViewModel {
-  let movieList: BehaviorRelay<ViewState> = BehaviorRelay(value: .initial)
+  let movieList: BehaviorRelay<ViewState<[Movie]>> = BehaviorRelay(value: .initial)
   
   private let disposeBag = DisposeBag()
   private let popularMoviesUsecase: GetPopularMoviesUsecase
@@ -34,7 +34,7 @@ class PopularMovieListViewModel {
         onNext: { [weak self] items in
           guard let self else { return }
           
-          self.movieList.accept(.success(items: items))
+          self.movieList.accept(.success(items))
         },
         onError: { [weak self] error in
           guard let self else { return }
@@ -58,7 +58,7 @@ class PopularMovieListViewModel {
         onNext: { [weak self] items in
           guard let self else { return }
           print(items)
-          self.movieList.accept(.success(items: items))
+          self.movieList.accept(.success(items))
         },
         onError: { [weak self] error in
           guard let self else { return }

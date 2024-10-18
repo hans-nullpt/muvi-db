@@ -45,7 +45,7 @@ extension HomeViewController {
     ).disposed(by: disposeBag)
   }
   
-  internal func updateTopRatedMoviesState(for state: ViewState) {
+  internal func updateTopRatedMoviesState(for state: ViewState<[Movie]>) {
     if case .success(let items) = state {
       let minCount = min(5, items.count - 1)
       let movies = Array(items[0...minCount])
@@ -55,14 +55,14 @@ extension HomeViewController {
     }
   }
   
-  internal func updatePopularMoviesState(for state: ViewState) {
+  internal func updatePopularMoviesState(for state: ViewState<[Movie]>) {
     if case .success(let items) = state {
       popularMovies = items
       updateCollectionViewData(with: items, for: .popular)
     }
   }
   
-  internal func updateUpcomingMoviesState(for state: ViewState) {
+  internal func updateUpcomingMoviesState(for state: ViewState<[Movie]>) {
     if case .success(let items) = state {
       upcomingMovies = items
       updateCollectionViewData(with: items, for: .upcoming)

@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 import RxRelay
 
-enum ViewState { case initial, loading, success(items: [Movie]), error(message: String) }
+enum ViewState<T> { case initial, loading, success(T), error(message: String) }
 
 class MovieListViewModel {
-  let topRatedMovies: BehaviorRelay<ViewState> = BehaviorRelay(value: .initial)
-  let popularMovies: BehaviorRelay<ViewState> = BehaviorRelay(value: .initial)
-  let upcomingMovies: BehaviorRelay<ViewState> = BehaviorRelay(value: .initial)
+  let topRatedMovies: BehaviorRelay<ViewState<[Movie]>> = BehaviorRelay(value: .initial)
+  let popularMovies: BehaviorRelay<ViewState<[Movie]>> = BehaviorRelay(value: .initial)
+  let upcomingMovies: BehaviorRelay<ViewState<[Movie]>> = BehaviorRelay(value: .initial)
   
   private let disposeBag = DisposeBag()
   private let topRatedMoviesUsecase: GetTopRatedMoviesUsecase
@@ -41,7 +41,7 @@ class MovieListViewModel {
         onNext: { [weak self] items in
           guard let self else { return }
           
-          self.topRatedMovies.accept(.success(items: items))
+          self.topRatedMovies.accept(.success(items))
         },
         onError: { [weak self] error in
           guard let self else { return }
@@ -65,7 +65,7 @@ class MovieListViewModel {
         onNext: { [weak self] items in
           guard let self else { return }
           
-          self.popularMovies.accept(.success(items: items))
+          self.popularMovies.accept(.success(items))
         },
         onError: { [weak self] error in
           guard let self else { return }
@@ -89,7 +89,7 @@ class MovieListViewModel {
         onNext: { [weak self] items in
           guard let self else { return }
           
-          self.upcomingMovies.accept(.success(items: items))
+          self.upcomingMovies.accept(.success(items))
         },
         onError: { [weak self] error in
           guard let self else { return }
