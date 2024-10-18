@@ -21,7 +21,7 @@ extension PopularMoviesViewController {
     ).disposed(by: disposeBag)
   }
   
-  internal func updateViewState(for state: ViewState) {
+  internal func updateViewState(for state: ViewState<[Movie]>) {
     if case .success(let items) = state {
       updateCollectionViewData(with: items)
     }
