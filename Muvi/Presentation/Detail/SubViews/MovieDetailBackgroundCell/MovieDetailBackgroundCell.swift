@@ -13,9 +13,54 @@ class MovieDetailBackgroundCell: UICollectionViewCell {
     UINib(nibName: "MovieDetailBackgroundCell", bundle: nil)
   }
 
+  
+  @IBOutlet weak var backdropImageView: UIImageView!
+  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var runtimeLabel: UILabel!
+  @IBOutlet weak var genresLabel: UILabel!
+  @IBOutlet weak var overviewLabel: UILabel!
+  @IBOutlet weak var gradientView: UIView!
+  
+  var gradientLayer: CAGradientLayer!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+    
+    gradientLayer = CAGradientLayer()
+    gradientLayer.frame = bounds
+    
+    gradientLayer.colors = [
+      UIColor.clear.cgColor,
+      UIColor.systemBackground.cgColor
+    ]
+    
+    gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+    gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+    
+    gradientLayer.locations = [0, 0.75]
+    gradientView.layer.insertSublayer(gradientLayer, at: 0)
+    
+  }
+  
+  override func layoutSubviews() {
+    gradientLayer.frame = gradientView.bounds
+  }
+  
+  func updateData(with data: MovieDetail) {
+    if let posterPath = data.posterPath {
+      let url = "https://image.tmdb.org/t/p/w500\(posterPath)"
+      Task {
+        backdropImageView.image = await Helper.downloadImage(from: url) ?? UIImage(systemName: "circle")
+      }
+    }
+    
+    titleLabel.text = data.title
+    runtimeLabel.text = String(((data.runtime ?? 0) / 60))
+    
+    let genres = (data.genres ?? []).map<String>({ $0.name ?? "" }).joined(separator: ", ")
+    genresLabel.text = genres
+    
+    overviewLabel.text = data.overview
   }
 
 }
