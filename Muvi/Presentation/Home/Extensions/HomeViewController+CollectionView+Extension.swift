@@ -203,7 +203,11 @@ extension HomeViewController: UICollectionViewDelegate {
       item = upcomingMovies[indexPath.item]
     }
     
-    let vc = MovieDetailViewController()
+    let datasource = MovieRemoteDataSourceImpl()
+    let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+    let usecase = GetMovieDetail(repository: repository)
+    let vm = MovieDetailViewModel(movieDetailUsecase: usecase)
+    let vc = MovieDetailViewController(viewModel: vm)
     vc.id = item.id
     navigationController?.pushViewController(vc, animated: true)
   }

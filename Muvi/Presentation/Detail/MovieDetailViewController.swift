@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum MovieDetailSection: CaseIterable, Hashable {
   case detail
@@ -20,6 +21,17 @@ class MovieDetailViewController: UIViewController {
   var collectionView: UICollectionView!
   
   internal var datasource: MovieDataSource!
+  let viewModel: MovieDetailViewModel
+  let disposeBag = DisposeBag()
+  
+  init(viewModel: MovieDetailViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,9 +40,26 @@ class MovieDetailViewController: UIViewController {
     configureCollectionView()
     configureDataSource()
     
-    let data = MovieDetail()
+    Task {
+      if let id {
+        try await viewModel.getMovieDetail(by: id)
+      }
+    }
     
-    updateCollectionViewData(with: data, for: .detail)
+    observeData()
   }
   
+  internal func observeData() {
+    viewModel.movieDetail.subscribe { [weak self] state in
+      guard let self else { return }
+      
+      updateViewState(for: state)
+    }.disposed(by: disposeBag)
+  }
+  
+  internal func updateViewState(for state: ViewState<MovieDetail>) {
+    if case .success(let data) = state {
+      updateCollectionViewData(with: data, for: .detail)
+    }
+  }
 }
