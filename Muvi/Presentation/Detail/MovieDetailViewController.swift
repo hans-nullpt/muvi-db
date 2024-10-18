@@ -7,23 +7,30 @@
 
 import UIKit
 
+enum MovieDetailSection: CaseIterable, Hashable {
+  case detail
+  case castMember
+}
+
 class MovieDetailViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  var id: Int?
+  
+  typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieDetailSection, MovieDetail>
+  
+  var collectionView: UICollectionView!
+  
+  internal var datasource: MovieDataSource!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .systemBackground
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    configureCollectionView()
+    configureDataSource()
+    
+    let data = MovieDetail()
+    
+    updateCollectionViewData(with: data, for: .detail)
+  }
+  
 }

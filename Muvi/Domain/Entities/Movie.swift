@@ -57,7 +57,7 @@ struct Movie: Codable, Hashable {
   }
 }
 
-struct MovieDetail: Codable {
+struct MovieDetail: Codable, Hashable {
 
     var video: Bool?
     var productionCompanies: [ProductionCompanies]?
@@ -116,7 +116,7 @@ struct MovieDetail: Codable {
     }
 }
 
-struct ProductionCompanies: Codable {
+struct ProductionCompanies: Codable, Hashable {
 
     var originCountry: String?
     var name: String?
@@ -131,7 +131,7 @@ struct ProductionCompanies: Codable {
     }
 }
 
-struct SpokenLanguages: Codable {
+struct SpokenLanguages: Codable, Hashable {
 
     var name: String?
     var englishName: String?
@@ -144,7 +144,7 @@ struct SpokenLanguages: Codable {
     }
 }
 
-struct Genres: Codable {
+struct Genres: Codable, Hashable {
 
     var name: String?
     var id: Int?
@@ -155,7 +155,7 @@ struct Genres: Codable {
     }
 }
 
-struct ProductionCountries: Codable {
+struct ProductionCountries: Codable, Hashable {
 
     var name: String?
     var iso31661: String?
