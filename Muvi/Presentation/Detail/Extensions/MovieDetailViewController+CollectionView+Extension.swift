@@ -18,7 +18,6 @@ extension MovieDetailViewController {
     )
     
     view.addSubview(collectionView)
-    
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
@@ -65,7 +64,7 @@ extension MovieDetailViewController {
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: NSCollectionLayoutSize(
         widthDimension: .fractionalWidth(1.0),
-        heightDimension: .absolute(563)
+        heightDimension: .absolute(871)
       ),
       subitem: item,
       count: 1
@@ -105,7 +104,7 @@ extension MovieDetailViewController {
     guard let cell else { return nil }
     
     cell.backgroundColor = .systemPink
-//    cell.updateData(with: movie)
+    cell.updateData(with: movie)
     
     return cell
   }

@@ -12,112 +12,130 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieDetailBackgroundCell" customModule="Muvi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="1157"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="871"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="1157"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="871"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="nowYouSeeMe" translatesAutoresizingMaskIntoConstraints="NO" id="5cC-8T-jRz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1157"/>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6V-qN-XHz">
-                        <rect key="frame" x="0.0" y="863" width="375" height="294"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="871"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nVe-4f-80Q">
-                                <rect key="frame" x="28" y="28" width="327" height="232"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="nowYouSeeMe" translatesAutoresizingMaskIntoConstraints="NO" id="5cC-8T-jRz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4E-7i-Ej6">
+                                <rect key="frame" x="0.0" y="599" width="375" height="272"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="KfS-xY-Usa">
-                                        <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="84.333333333333329"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nVe-4f-80Q">
+                                        <rect key="frame" x="20" y="20" width="335" height="232"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oEb-ga-rvR">
-                                                <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="56"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="KfS-xY-Usa">
+                                                <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="84.333333333333329"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now You See Me 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqY-aq-Hhr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="33.666666666666664"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1h 29m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjN-78-NyU">
-                                                        <rect key="frame" x="0.0" y="41.666666666666629" width="239.66666666666666" height="14.333333333333336"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oEb-ga-rvR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="56"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now You See Me 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqY-aq-Hhr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="33.666666666666664"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1h 29m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjN-78-NyU">
+                                                                <rect key="frame" x="0.0" y="41.666666666666629" width="239.66666666666666" height="14.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action, Comedy, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-LX-7x4">
+                                                        <rect key="frame" x="0.0" y="70" width="239.66666666666666" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action, Comedy, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-LX-7x4">
-                                                <rect key="frame" x="0.0" y="70" width="239.66666666666666" height="14.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="k0T-42-SgI">
+                                                <rect key="frame" x="0.0" y="100.33333333333337" width="335" height="34.333333333333343"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19G-ki-l09">
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Watch Trailer" imagePadding="4">
+                                                            <imageReference key="image" image="play" catalog="system" symbolScale="small"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYa-PJ-mAr">
+                                                        <rect key="frame" x="174.66666666666663" y="0.0" width="160.33333333333337" height="34.333333333333336"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                        </accessibility>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add to Favorite" imagePadding="4">
+                                                            <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8H-0X-0U8">
+                                                <rect key="frame" x="0.0" y="150.66666666666663" width="335" height="81.333333333333314"/>
+                                                <string key="text">An FBI agent and an Interpol detective track a team of illusionists who pull off bank heists during their performances, and reward their audiences with the money.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="k0T-42-SgI" secondAttribute="trailing" id="8V8-sA-ODu"/>
+                                            <constraint firstItem="k0T-42-SgI" firstAttribute="leading" secondItem="nVe-4f-80Q" secondAttribute="leading" id="amf-Zk-4lG"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="k0T-42-SgI">
-                                        <rect key="frame" x="0.0" y="100.33333333333337" width="327" height="34.333333333333343"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19G-ki-l09">
-                                                <rect key="frame" x="0.0" y="0.0" width="156.66666666666666" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Watch Trailer" imagePadding="4">
-                                                    <imageReference key="image" image="play" catalog="system" symbolScale="small"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYa-PJ-mAr">
-                                                <rect key="frame" x="170.66666666666663" y="0.0" width="156.33333333333337" height="34.333333333333336"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
-                                                </accessibility>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Add to Favorite" imagePadding="4">
-                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8H-0X-0U8">
-                                        <rect key="frame" x="0.0" y="150.66666666666674" width="327" height="81.333333333333314"/>
-                                        <string key="text">An FBI agent and an Interpol detective track a team of illusionists who pull off bank heists during their performances, and reward their audiences with the money.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="k0T-42-SgI" firstAttribute="leading" secondItem="nVe-4f-80Q" secondAttribute="leadingMargin" id="Kd9-L0-qbf"/>
-                                    <constraint firstAttribute="trailing" secondItem="k0T-42-SgI" secondAttribute="trailingMargin" id="Qfk-Ht-FvK"/>
+                                    <constraint firstItem="nVe-4f-80Q" firstAttribute="top" secondItem="w4E-7i-Ej6" secondAttribute="top" constant="20" id="kKg-sj-JB0"/>
+                                    <constraint firstAttribute="bottom" secondItem="nVe-4f-80Q" secondAttribute="bottom" constant="20" id="mpf-Cs-C24"/>
+                                    <constraint firstAttribute="trailing" secondItem="nVe-4f-80Q" secondAttribute="trailing" constant="20" id="nKj-JM-Tto"/>
+                                    <constraint firstItem="nVe-4f-80Q" firstAttribute="leading" secondItem="w4E-7i-Ej6" secondAttribute="leading" constant="20" id="yb9-WH-N7L"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nVe-4f-80Q" firstAttribute="leading" secondItem="m6V-qN-XHz" secondAttribute="leadingMargin" constant="20" id="8vF-gU-LtE"/>
-                            <constraint firstAttribute="trailing" secondItem="nVe-4f-80Q" secondAttribute="trailingMargin" constant="20" id="p1f-0A-H2h"/>
-                            <constraint firstItem="nVe-4f-80Q" firstAttribute="top" secondItem="m6V-qN-XHz" secondAttribute="topMargin" constant="20" id="qot-4k-HfU"/>
-                            <constraint firstAttribute="bottom" secondItem="nVe-4f-80Q" secondAttribute="bottomMargin" constant="34" id="r4H-xX-S2R"/>
+                            <constraint firstAttribute="bottom" secondItem="w4E-7i-Ej6" secondAttribute="bottom" id="Ljm-cx-vE5"/>
+                            <constraint firstAttribute="trailing" secondItem="5cC-8T-jRz" secondAttribute="trailing" id="NdW-Ep-Lae"/>
+                            <constraint firstAttribute="trailing" secondItem="w4E-7i-Ej6" secondAttribute="trailing" id="hnM-JJ-4zb"/>
+                            <constraint firstItem="5cC-8T-jRz" firstAttribute="leading" secondItem="m6V-qN-XHz" secondAttribute="leading" id="kk0-vp-oAv"/>
+                            <constraint firstItem="w4E-7i-Ej6" firstAttribute="leading" secondItem="m6V-qN-XHz" secondAttribute="leading" id="m3C-ay-2GF"/>
+                            <constraint firstItem="5cC-8T-jRz" firstAttribute="top" secondItem="m6V-qN-XHz" secondAttribute="top" id="p98-hh-J6c"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="5cC-8T-jRz" secondAttribute="trailing" id="1AE-27-ega"/>
-                <constraint firstAttribute="top" secondItem="5cC-8T-jRz" secondAttribute="top" id="5uZ-ea-swT"/>
-                <constraint firstAttribute="bottom" secondItem="5cC-8T-jRz" secondAttribute="bottom" id="9VR-j2-apt"/>
-                <constraint firstItem="m6V-qN-XHz" firstAttribute="leading" secondItem="5cC-8T-jRz" secondAttribute="leading" id="Ikf-Ot-Gre"/>
-                <constraint firstItem="m6V-qN-XHz" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" priority="1" id="Yr7-pV-fp0"/>
-                <constraint firstItem="m6V-qN-XHz" firstAttribute="trailing" secondItem="5cC-8T-jRz" secondAttribute="trailing" id="nvZ-NV-5jB"/>
-                <constraint firstItem="5cC-8T-jRz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="s4r-ZU-w0U"/>
+                <constraint firstAttribute="trailing" secondItem="m6V-qN-XHz" secondAttribute="trailing" id="NL6-rN-WfI"/>
+                <constraint firstItem="m6V-qN-XHz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bLD-fc-47q"/>
+                <constraint firstItem="m6V-qN-XHz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mln-FZ-590"/>
+                <constraint firstAttribute="bottom" secondItem="m6V-qN-XHz" secondAttribute="bottom" id="udB-0r-ZNo"/>
             </constraints>
-            <size key="customSize" width="375" height="1157"/>
-            <point key="canvasLocation" x="2.2900763358778624" y="228.52112676056339"/>
+            <size key="customSize" width="375" height="871"/>
+            <connections>
+                <outlet property="backdropImageView" destination="5cC-8T-jRz" id="JlU-E0-2Bc"/>
+                <outlet property="genresLabel" destination="1Kr-LX-7x4" id="Fxq-zP-0u4"/>
+                <outlet property="gradientView" destination="w4E-7i-Ej6" id="24m-6S-LXJ"/>
+                <outlet property="overviewLabel" destination="h8H-0X-0U8" id="TDb-Dl-4Oq"/>
+                <outlet property="runtimeLabel" destination="tjN-78-NyU" id="udl-0R-1gX"/>
+                <outlet property="titleLabel" destination="nqY-aq-Hhr" id="LDX-Td-JqF"/>
+            </connections>
+            <point key="canvasLocation" x="2.2900763358778624" y="127.8169014084507"/>
         </collectionViewCell>
     </objects>
     <resources>
