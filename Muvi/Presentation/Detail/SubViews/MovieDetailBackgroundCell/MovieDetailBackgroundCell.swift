@@ -55,12 +55,20 @@ class MovieDetailBackgroundCell: UICollectionViewCell {
     }
     
     titleLabel.text = data.title
-    runtimeLabel.text = String(((data.runtime ?? 0) / 60))
+    runtimeLabel.text = convertRuntimeToHumanReadable(from: data.runtime ?? 0)
     
     let genres = (data.genres ?? []).map<String>({ $0.name ?? "" }).joined(separator: ", ")
     genresLabel.text = genres
     
     overviewLabel.text = data.overview
+  }
+  
+  func convertRuntimeToHumanReadable(from runtime: Int) -> String? {
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .abbreviated
+    formatter.allowedUnits = [.hour, .minute]
+
+    return formatter.string(from: TimeInterval(runtime * 60))
   }
 
 }
