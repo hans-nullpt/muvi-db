@@ -18,6 +18,7 @@ extension MovieDetailViewController {
     )
     
     view.addSubview(collectionView)
+    
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
@@ -73,7 +74,6 @@ extension MovieDetailViewController {
     // Section
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .none
-//    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 32, trailing: 0)
     
     return section
   }
