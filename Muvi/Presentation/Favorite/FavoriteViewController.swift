@@ -26,6 +26,8 @@ class FavoriteViewController: UIViewController {
   
   internal func configureTableView() {
     tableView = UITableView(frame: view.bounds)
+    tableView.rowHeight = 106
+    tableView.separatorStyle = .none
     
     view.addSubview(tableView)
     
