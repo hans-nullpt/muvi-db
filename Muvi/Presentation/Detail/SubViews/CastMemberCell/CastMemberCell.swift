@@ -8,6 +8,10 @@
 import UIKit
 
 class CastMemberCell: UICollectionViewCell {
+  static let reusableId: String = "CastMemberCell"
+  static func nib() -> UINib {
+    UINib(nibName: "CastMemberCell", bundle: nil)
+  }
 
   @IBOutlet weak var avatarView: UIImageView!
   
