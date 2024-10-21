@@ -9,28 +9,55 @@ import UIKit
 import SnapKit
 
 class FavoriteViewController: UIViewController {
+  typealias MovieDataSource = UITableViewDiffableDataSource<Int, Movie>
   
-  private let label = UILabel()
+  var tableView: UITableView!
+  
+  var datasource: MovieDataSource!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    configureLabel()
+    view.backgroundColor = .systemBackground
+    
+    configureTableView()
+    configureDatasource()
   }
   
+  internal func configureTableView() {
+    tableView = UITableView(frame: view.bounds)
+    
+    view.addSubview(tableView)
+    
+    tableView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+    
+    tableView.register(FavoriteMovieCell.nib(), forCellReuseIdentifier: FavoriteMovieCell.reusableId)
+    
+  }
   
-  private func configureLabel() {
-    view.addSubview(label)
-    
-    label.font = .preferredFont(forTextStyle: .title2)
-    label.textColor = .white
-    label.text = "Favorites Movies"
-    label.translatesAutoresizingMaskIntoConstraints = false
-    
-    label.snp.makeConstraints { make in
-      make.center.equalToSuperview()
+  internal func configureDatasource() {
+    datasource = MovieDataSource(tableView: tableView) { tableView, indexPath, movie in
+      let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteMovieCell.reusableId, for: indexPath) as? FavoriteMovieCell
+      
+      guard let cell else { return nil }
+      
+      cell.updateData(with: movie)
+      
+      return cell
     }
   }
   
+  internal func updateTableViewData(with movies: [Movie]) {
+    var snapshot = NSDiffableDataSourceSnapshot<Int, Movie>()
+    snapshot.appendSections([0])
+    snapshot.appendItems(movies)
+    
+    DispatchQueue.main.async { [weak self] in
+      guard let self else { return }
+      self.datasource.apply(snapshot)
+    }
+  }
   
 }
