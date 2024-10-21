@@ -8,7 +8,10 @@
 import UIKit
 
 class FavoriteMovieCell: UITableViewCell {
-
+  static let reusableId: String = "FavoriteMovieCell"
+  static func nib() -> UINib {
+    UINib(nibName: "FavoriteMovieCell", bundle: nil)
+  }
   
   @IBOutlet weak var backdropImageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
