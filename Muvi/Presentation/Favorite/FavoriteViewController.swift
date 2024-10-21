@@ -11,7 +11,16 @@ import SnapKit
 class FavoriteViewController: UIViewController {
   typealias MovieDataSource = UITableViewDiffableDataSource<Int, Movie>
   
-  var tableView: UITableView!
+  internal var tableView: UITableView!
+  internal lazy var searchField: UITextField = {
+    let field = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40))
+    field.placeholder = "Search Movie"
+    field.rightView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+    field.tintColor = .systemYellow
+    field.rightViewMode = .always
+    
+    return field
+  }()
   
   var datasource: MovieDataSource!
   
@@ -20,6 +29,7 @@ class FavoriteViewController: UIViewController {
     
     view.backgroundColor = .systemBackground
     
+    configureSearchField()
     configureTableView()
     configureDatasource()
   }
@@ -32,7 +42,8 @@ class FavoriteViewController: UIViewController {
     view.addSubview(tableView)
     
     tableView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.equalTo(searchField.snp.bottom).offset(24)
+      make.leading.trailing.bottom.equalToSuperview()
     }
     
     tableView.register(FavoriteMovieCell.nib(), forCellReuseIdentifier: FavoriteMovieCell.reusableId)
@@ -62,4 +73,32 @@ class FavoriteViewController: UIViewController {
     }
   }
   
+  internal func configureSearchField() {
+    view.addSubview(searchField)
+    
+    searchField.delegate = self
+    
+    searchField.snp.makeConstraints { make in
+      make.leading.trailing.equalToSuperview().inset(20)
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+    }
+  }
+  
+}
+
+extension FavoriteViewController: UISearchTextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+//    if let keyword = textField.text, !keyword.isEmpty {
+//      Task {
+//        try await viewModel.searchMovie(keyword)
+//      }
+//    } else {
+//      Task {
+//        try await viewModel.getPopularMovies()
+//      }
+//    }
+    
+    return true
+  }
 }
