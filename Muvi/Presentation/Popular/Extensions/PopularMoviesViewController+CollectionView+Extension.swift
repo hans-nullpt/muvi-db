@@ -54,6 +54,7 @@ extension PopularMoviesViewController {
   internal func updateCollectionViewData(
     with movies: [Movie]
   ) {
+    // MARK: clear datasource and snapshot before apply new data
     var snapshot = NSDiffableDataSourceSnapshot<Int, Movie>()
     snapshot.appendSections([0])
     snapshot.appendItems(movies)
@@ -62,7 +63,6 @@ extension PopularMoviesViewController {
       guard let self else { return }
       
       self.datasource.apply(snapshot)
-      
     }
     
   }
