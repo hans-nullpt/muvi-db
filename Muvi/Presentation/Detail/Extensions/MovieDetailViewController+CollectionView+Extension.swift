@@ -108,6 +108,7 @@ extension MovieDetailViewController {
     
     cell.backgroundColor = .systemPink
     cell.updateData(with: movie)
+    cell.addToFavoriteBtn?.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
     
     return cell
   }
