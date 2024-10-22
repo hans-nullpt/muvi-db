@@ -217,7 +217,7 @@ extension HomeViewController: UICollectionViewDelegate {
     let vm = MovieDetailViewModel(movieDetailUsecase: detailUsecase, addToFavoriteUsecase: addToFavoriteUsecase)
     
     let vc = MovieDetailViewController(viewModel: vm)
-    vc.id = item.id
+    vc.movie = item
     navigationController?.pushViewController(vc, animated: true)
   }
 }
