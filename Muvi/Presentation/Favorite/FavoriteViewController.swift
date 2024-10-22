@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class FavoriteViewController: UIViewController {
   typealias MovieDataSource = UITableViewDiffableDataSource<Int, Movie>
@@ -22,7 +23,21 @@ class FavoriteViewController: UIViewController {
     return field
   }()
   
+  let disposeBag = DisposeBag()
+  
   var datasource: MovieDataSource!
+  
+  let viewModel: FavoriteMovieViewModel
+  
+  init(viewModel: FavoriteMovieViewModel) {
+    self.viewModel = viewModel
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +47,12 @@ class FavoriteViewController: UIViewController {
     configureSearchField()
     configureTableView()
     configureDatasource()
+    
+    Task {
+      try await viewModel.getFavoriteMovies()
+    }
+    
+    observeMovies()
   }
   
   internal func configureTableView() {
@@ -81,6 +102,24 @@ class FavoriteViewController: UIViewController {
     searchField.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(20)
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+    }
+  }
+  
+  internal func observeMovies() {
+    viewModel.movies.subscribe(
+      onNext: { [weak self] state in
+        guard let self else { return }
+        
+        DispatchQueue.main.async {
+          self.updateFavoriteMoviesState(for: state)
+        }
+      }
+    ).disposed(by: disposeBag)
+  }
+  
+  internal func updateFavoriteMoviesState(for state: ViewState<[Movie]>) {
+    if case .success(let items) = state {
+      updateTableViewData(with: items)
     }
   }
   
