@@ -29,6 +29,8 @@ class FavoriteViewController: UIViewController {
   
   let viewModel: FavoriteMovieViewModel
   
+  var items: [Movie] = []
+  
   init(viewModel: FavoriteMovieViewModel) {
     self.viewModel = viewModel
     
@@ -68,6 +70,7 @@ class FavoriteViewController: UIViewController {
     }
     
     tableView.register(FavoriteMovieCell.nib(), forCellReuseIdentifier: FavoriteMovieCell.reusableId)
+    tableView.delegate = self
     
   }
   
@@ -120,9 +123,32 @@ class FavoriteViewController: UIViewController {
   internal func updateFavoriteMoviesState(for state: ViewState<[Movie]>) {
     if case .success(let items) = state {
       updateTableViewData(with: items)
+      self.items = items
     }
   }
   
+}
+
+extension FavoriteViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let item = items[indexPath.item]
+    
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
+    
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
+    
+    let detailUsecase = GetMovieDetail(repository: repository)
+    let addToFavoriteUsecase = AddToFavoriteUsecase(repository: repository)
+    
+    let vm = MovieDetailViewModel(movieDetailUsecase: detailUsecase, addToFavoriteUsecase: addToFavoriteUsecase)
+    let vc = MovieDetailViewController(viewModel: vm)
+    vc.movie = item
+    navigationController?.pushViewController(vc, animated: true)
+  }
 }
 
 extension FavoriteViewController: UISearchTextFieldDelegate {
