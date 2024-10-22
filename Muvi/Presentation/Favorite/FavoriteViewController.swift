@@ -154,15 +154,15 @@ extension FavoriteViewController: UITableViewDelegate {
 extension FavoriteViewController: UISearchTextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
-//    if let keyword = textField.text, !keyword.isEmpty {
-//      Task {
-//        try await viewModel.searchMovie(keyword)
-//      }
-//    } else {
-//      Task {
-//        try await viewModel.getPopularMovies()
-//      }
-//    }
+    if let keyword = textField.text, !keyword.isEmpty {
+      Task {
+        try await viewModel.searchMovie(keyword)
+      }
+    } else {
+      Task {
+        try await viewModel.getFavoriteMovies()
+      }
+    }
     
     return true
   }

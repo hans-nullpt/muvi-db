@@ -74,9 +74,11 @@ class MuviTabBarViewController: UITabBarController {
     )
     
     let favoriteMoviesUsecase = GetFavoriteMoviesUsecase(repository: repository)
+    let searchMoviesUsecase = SearchFavoriteMoviesUsecase(repository: repository)
     
     let viewModel = FavoriteMovieViewModel(
-      favoriteMoviesUsecase: favoriteMoviesUsecase
+      favoriteMoviesUsecase: favoriteMoviesUsecase,
+      searchMoviesUsecase: searchMoviesUsecase
     )
     
     let viewController = FavoriteViewController(viewModel: viewModel)

@@ -14,9 +14,11 @@ class FavoriteMovieViewModel {
   
   private let disposeBag = DisposeBag()
   private let favoriteMoviesUsecase: GetFavoriteMoviesUsecase
+  private let searchMoviesUsecase: SearchFavoriteMoviesUsecase
   
-  init(favoriteMoviesUsecase: GetFavoriteMoviesUsecase) {
+  init(favoriteMoviesUsecase: GetFavoriteMoviesUsecase, searchMoviesUsecase: SearchFavoriteMoviesUsecase) {
     self.favoriteMoviesUsecase = favoriteMoviesUsecase
+    self.searchMoviesUsecase = searchMoviesUsecase
   }
   
   func getFavoriteMovies() async throws {
@@ -42,4 +44,28 @@ class FavoriteMovieViewModel {
     }
     
   }
+  
+  func searchMovie(_ keyword: String) async throws {
+    movies.accept(.loading)
+    
+    do {
+      let items = try await searchMoviesUsecase.execute(keyword)
+      
+      items.subscribe(
+        onNext: { [weak self] items in
+          guard let self else { return }
+          print(items)
+          self.movies.accept(.success(items))
+        },
+        onError: { [weak self] error in
+          guard let self else { return }
+          
+          self.movies.accept(.error(message: error.localizedDescription))
+        }
+      ).disposed(by: disposeBag)
+    } catch {
+      movies.accept(.error(message: error.localizedDescription))
+    }
+  }
+  
 }
