@@ -16,17 +16,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="264"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="hellboy" translatesAutoresizingMaskIntoConstraints="NO" id="yEI-2x-Jrd">
-                        <rect key="frame" x="0.0" y="0.0" width="160" height="217.66666666666666"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="hellboy" translatesAutoresizingMaskIntoConstraints="NO" id="N0O-25-M8L">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="213"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="MovieTitle" text="Hellboy - The Crooked Man" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xd-tL-gp2">
-                        <rect key="frame" x="0.0" y="233.66666666666663" width="160" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MovieTitle" text="Hellboy - The Crooked Man" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xd-tL-gp2">
+                        <rect key="frame" x="0.0" y="221" width="160" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="MovieOverview" text="Hellboy and a rookie BPRD agent find themselves stranded in 1950s rural Appalachia. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSz-Di-NAj">
-                        <rect key="frame" x="0.0" y="252" width="160" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MovieOverview" text="Hellboy and a rookie BPRD agent find themselves stranded in 1950s rural Appalachia. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSz-Di-NAj">
+                        <rect key="frame" x="0.0" y="240" width="160" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" systemColor="underPageBackgroundColor"/>
                         <nil key="highlightedColor"/>
@@ -34,21 +34,20 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="6Xd-tL-gp2" secondAttribute="trailing" id="4KC-sm-Z3I"/>
-                <constraint firstItem="bSz-Di-NAj" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="8Sy-aA-fuy"/>
-                <constraint firstItem="yEI-2x-Jrd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8aA-aL-l5r"/>
-                <constraint firstItem="6Xd-tL-gp2" firstAttribute="top" secondItem="yEI-2x-Jrd" secondAttribute="bottom" constant="16" id="9sJ-KY-rvA"/>
-                <constraint firstItem="6Xd-tL-gp2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DDf-ew-Nav"/>
-                <constraint firstItem="bSz-Di-NAj" firstAttribute="top" secondItem="6Xd-tL-gp2" secondAttribute="bottom" constant="4" id="NBu-kN-PC6"/>
-                <constraint firstAttribute="top" secondItem="yEI-2x-Jrd" secondAttribute="top" id="Tye-UU-1Io"/>
-                <constraint firstItem="yEI-2x-Jrd" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="XqP-0B-ReJ"/>
-                <constraint firstAttribute="bottom" secondItem="bSz-Di-NAj" secondAttribute="bottom" id="YsC-yD-TaN"/>
-                <constraint firstItem="bSz-Di-NAj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="doL-if-FoM"/>
-                <constraint firstItem="yEI-2x-Jrd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="v3K-OY-tjT"/>
+                <constraint firstAttribute="trailing" secondItem="bSz-Di-NAj" secondAttribute="trailing" id="6Z5-Kq-GIe"/>
+                <constraint firstItem="6Xd-tL-gp2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B0E-A9-r4K"/>
+                <constraint firstItem="bSz-Di-NAj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="HVJ-77-N9G"/>
+                <constraint firstItem="N0O-25-M8L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Lk3-4o-SzA"/>
+                <constraint firstAttribute="trailing" secondItem="N0O-25-M8L" secondAttribute="trailing" id="RlX-N9-7Ed"/>
+                <constraint firstAttribute="bottom" secondItem="bSz-Di-NAj" secondAttribute="bottom" id="hk2-dm-dNF"/>
+                <constraint firstItem="bSz-Di-NAj" firstAttribute="top" secondItem="6Xd-tL-gp2" secondAttribute="bottom" constant="4" id="t2N-m7-Fo5"/>
+                <constraint firstItem="N0O-25-M8L" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uyK-pZ-ii7"/>
+                <constraint firstAttribute="trailing" secondItem="6Xd-tL-gp2" secondAttribute="trailing" id="zhl-SN-8Kp"/>
+                <constraint firstItem="6Xd-tL-gp2" firstAttribute="top" secondItem="N0O-25-M8L" secondAttribute="bottom" constant="8" id="znk-vC-NbC"/>
             </constraints>
             <size key="customSize" width="88" height="214"/>
             <connections>
-                <outlet property="imageView" destination="yEI-2x-Jrd" id="btM-jG-f2f"/>
+                <outlet property="imageView" destination="N0O-25-M8L" id="7Bg-uq-rCR"/>
                 <outlet property="overviewLabel" destination="bSz-Di-NAj" id="ijH-72-U0M"/>
                 <outlet property="titleLabel" destination="6Xd-tL-gp2" id="msP-9z-un6"/>
             </connections>
