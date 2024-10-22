@@ -14,9 +14,11 @@ class MovieDetailViewModel {
   
   private let disposeBag = DisposeBag()
   private let movieDetailUsecase: GetMovieDetail
+  private let addToFavoriteUsecase: AddToFavoriteUsecase
   
-  init(movieDetailUsecase: GetMovieDetail) {
+  init(movieDetailUsecase: GetMovieDetail, addToFavoriteUsecase: AddToFavoriteUsecase) {
     self.movieDetailUsecase = movieDetailUsecase
+    self.addToFavoriteUsecase = addToFavoriteUsecase
   }
   
   func getMovieDetail(by id: Int) async throws {

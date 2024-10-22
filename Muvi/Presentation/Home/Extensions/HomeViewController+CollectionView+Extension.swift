@@ -211,8 +211,11 @@ extension HomeViewController: UICollectionViewDelegate {
       localDataSource: localDataSource
     )
     
-    let usecase = GetMovieDetail(repository: repository)
-    let vm = MovieDetailViewModel(movieDetailUsecase: usecase)
+    let detailUsecase = GetMovieDetail(repository: repository)
+    let addToFavoriteUsecase = AddToFavoriteUsecase(repository: repository)
+    
+    let vm = MovieDetailViewModel(movieDetailUsecase: detailUsecase, addToFavoriteUsecase: addToFavoriteUsecase)
+    
     let vc = MovieDetailViewController(viewModel: vm)
     vc.id = item.id
     navigationController?.pushViewController(vc, animated: true)
