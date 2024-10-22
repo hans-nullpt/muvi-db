@@ -10,7 +10,13 @@ import RxSwift
 import CoreData
 
 protocol MovieLocalDataSource {
-  func getFavoriteMovies() async throws -> Observable<[Movie]>
+  func addToFavorite(movie: Movie) throws -> Observable<Bool>
+  func getFavoriteMovies() throws -> Observable<[Movie]>
+}
+
+enum MovieLocalDataError: Error {
+  case invalidData
+  case failedToStore
 }
 
 struct MovieLocalDataSourceImpl: MovieLocalDataSource {
@@ -23,7 +29,34 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     self.context = database.container.viewContext
   }
   
-  func getFavoriteMovies() async throws -> Observable<[Movie]> {
+  func addToFavorite(movie: Movie) throws -> Observable<Bool> {
+    guard let context else { return Observable.of(false) }
+    
+    let data = FavoriteMovieEntity(context: context)
+    data.id = Int64(movie.id ?? 0)
+    data.adult = movie.adult ?? false
+    data.backdropPath = movie.backdropPath
+    data.posterPath = movie.posterPath
+    data.originalLanguage = movie.originalLanguage
+    data.title = movie.title
+    data.originalTitle = movie.originalTitle
+    data.overview = movie.overview
+    data.releaseDate = movie.releaseDate
+    data.popularity = movie.popularity ?? 0
+    data.voteCount = Int64(movie.voteCount ?? 0)
+    data.voteAverage = movie.voteAverage ?? 0
+    data.video = movie.video ?? false
+    
+    do {
+      try context.save()
+      
+      return Observable.of(true)
+    } catch {
+      throw MovieLocalDataError.failedToStore
+    }
+  }
+  
+  func getFavoriteMovies() throws -> Observable<[Movie]> {
     
     var items: [Movie] = []
     
@@ -32,7 +65,6 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     let request = FavoriteMovieEntity.fetchRequest()
     
     do {
-      
       let response = try context.fetch(request)
       let mappedResponse = response.map { data in
         Movie(
@@ -58,7 +90,7 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
       return Observable.of(items)
     } catch {
       print(error.localizedDescription)
-      throw MovieApiError.invalidData
+      throw MovieLocalDataError.invalidData
     }
   }
   
