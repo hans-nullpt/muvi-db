@@ -58,9 +58,17 @@ struct MovieRepositoryImpl: MovieRepository {
     }
   }
   
-  func getFavoriteMovies() async throws -> Observable<[Movie]> {
+  func getFavoriteMovies() throws -> Observable<[Movie]> {
     do {
-      return try await localDataSource.getFavoriteMovies()
+      return try localDataSource.getFavoriteMovies()
+    } catch {
+      throw error
+    }
+  }
+  
+  func addToFavorite(movie: Movie) throws -> Observable<Bool> {
+    do {
+      return try localDataSource.addToFavorite(movie: movie)
     } catch {
       throw error
     }
