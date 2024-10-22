@@ -107,8 +107,12 @@ class HomeViewController: UIViewController {
 
 #Preview(traits: .defaultLayout, body: {
   let datasource = MovieRemoteDataSourceImpl()
+  let database = CoreDataManager.shared
+  let localSource = MovieLocalDataSourceImpl(
+    database: database
+  )
   
-  let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+  let repository = MovieRepositoryImpl(remoteDataSource: datasource, localDataSource: localSource)
   
   let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
   let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)

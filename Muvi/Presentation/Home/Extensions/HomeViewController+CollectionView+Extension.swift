@@ -203,8 +203,14 @@ extension HomeViewController: UICollectionViewDelegate {
       item = upcomingMovies[indexPath.item]
     }
     
-    let datasource = MovieRemoteDataSourceImpl()
-    let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
+    
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
+    
     let usecase = GetMovieDetail(repository: repository)
     let vm = MovieDetailViewModel(movieDetailUsecase: usecase)
     let vc = MovieDetailViewController(viewModel: vm)
