@@ -51,7 +51,7 @@ class MuviTabBarViewController: UITabBarController {
     )
     
     let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
-    let searchMoviesUsecase = SearchMoviesUsecase(repository: repository)
+    let searchMoviesUsecase = SearchPopularMoviesUsecase(repository: repository)
     
     let viewModel = PopularMovieListViewModel(
       popularMoviesUsecase: popularMoviesUsecase,
