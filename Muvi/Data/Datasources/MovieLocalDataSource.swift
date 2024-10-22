@@ -10,7 +10,7 @@ import RxSwift
 import CoreData
 
 protocol MovieLocalDataSource {
-  func getFavoriteMovies() -> Observable<Movie>
+  func getFavoriteMovies() async throws -> Observable<[Movie]>
 }
 
 struct MovieLocalDataSourceImpl: MovieLocalDataSource {
@@ -23,8 +23,14 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     self.context = database.container.viewContext
   }
   
-  func getFavoriteMovies() -> Observable<Movie> {
-    Observable.from([])
+  func getFavoriteMovies() async throws -> Observable<[Movie]> {
+    do {
+      let items: [Movie] = []
+      return Observable.from([items])
+    } catch {
+      print(error.localizedDescription)
+      throw MovieApiError.invalidData
+    }
   }
   
 }

@@ -11,9 +11,11 @@ import RxSwift
 struct MovieRepositoryImpl: MovieRepository {
   
   fileprivate let remoteDataSource: MovieRemoteDataSource
+  fileprivate let localDataSource: MovieLocalDataSource
   
-  init(remoteDataSource: MovieRemoteDataSource) {
+  init(remoteDataSource: MovieRemoteDataSource, localDataSource: MovieLocalDataSource) {
     self.remoteDataSource = remoteDataSource
+    self.localDataSource = localDataSource
   }
   
   func getTopRatedMovies() async throws -> Observable<[Movie]> {
@@ -58,7 +60,7 @@ struct MovieRepositoryImpl: MovieRepository {
   
   func getFavoriteMovies() async throws -> Observable<[Movie]> {
     do {
-      return try await remoteDataSource.getUpcomingMovies()
+      return try await localDataSource.getFavoriteMovies()
     } catch {
       throw error
     }
