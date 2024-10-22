@@ -14,11 +14,11 @@ class PopularMovieListViewModel {
   
   private let disposeBag = DisposeBag()
   private let popularMoviesUsecase: GetPopularMoviesUsecase
-  private let searchMoviesUsecase: SearchMoviesUsecase
+  private let searchMoviesUsecase: SearchPopularMoviesUsecase
   
   init(
     popularMoviesUsecase: GetPopularMoviesUsecase,
-    searchMoviesUsecase: SearchMoviesUsecase
+    searchMoviesUsecase: SearchPopularMoviesUsecase
   ) {
     self.popularMoviesUsecase = popularMoviesUsecase
     self.searchMoviesUsecase = searchMoviesUsecase
