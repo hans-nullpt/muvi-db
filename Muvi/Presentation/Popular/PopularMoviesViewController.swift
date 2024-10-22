@@ -27,6 +27,9 @@ class PopularMoviesViewController: UIViewController {
   internal let viewModel: PopularMovieListViewModel
   internal let disposeBag = DisposeBag()
   internal var items: [Movie] = []
+  internal var filteredItems: [Movie]?
+  
+  //MARK: configure tab bar manually (opaque)
   
   init(viewModel: PopularMovieListViewModel) {
     self.viewModel = viewModel
