@@ -50,11 +50,15 @@ class FavoriteViewController: UIViewController {
     configureTableView()
     configureDatasource()
     
+    observeMovies()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
     Task {
       try await viewModel.getFavoriteMovies()
     }
-    
-    observeMovies()
   }
   
   internal func configureTableView() {
