@@ -26,6 +26,7 @@ class PopularMoviesViewController: UIViewController {
   
   internal let viewModel: PopularMovieListViewModel
   internal let disposeBag = DisposeBag()
+  internal var items: [Movie] = []
   
   init(viewModel: PopularMovieListViewModel) {
     self.viewModel = viewModel
