@@ -24,9 +24,38 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
   }
   
   func getFavoriteMovies() async throws -> Observable<[Movie]> {
+    
+    var items: [Movie] = []
+    
+    guard let context else { return Observable.of(items) }
+    
+    let request = FavoriteMovieEntity.fetchRequest()
+    
     do {
-      let items: [Movie] = []
-      return Observable.from([items])
+      
+      let response = try context.fetch(request)
+      let mappedResponse = response.map { data in
+        Movie(
+          popularity: data.popularity,
+          voteCount: Int(data.voteCount),
+          posterPath: data.posterPath,
+          releaseDate: data.releaseDate,
+          overview: data.overview,
+          voteAverage: data.voteAverage,
+          backdropPath: data.backdropPath,
+          id: Int(data.id),
+          adult: data.adult,
+          video: data.video,
+          originalLanguage: data.originalLanguage,
+          title: data.title,
+          genreIds: [],
+          originalTitle: data.originalTitle
+        )
+      }
+      
+      items.append(contentsOf: mappedResponse)
+      
+      return Observable.of(items)
     } catch {
       print(error.localizedDescription)
       throw MovieApiError.invalidData
