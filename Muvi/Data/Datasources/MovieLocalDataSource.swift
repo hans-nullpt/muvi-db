@@ -32,6 +32,8 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
   func addToFavorite(movie: Movie) throws -> Observable<Bool> {
     guard let context else { return Observable.of(false) }
     
+    guard !itemExists(movie.id!) else { return Observable.of(false) }
+    
     let data = FavoriteMovieEntity(context: context)
     data.id = Int64(movie.id ?? 0)
     data.adult = movie.adult ?? false
@@ -92,6 +94,24 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
       print(error.localizedDescription)
       throw MovieLocalDataError.invalidData
     }
+  }
+  
+  private func itemExists(_ id: Int) -> Bool {
+    guard let context else { return false }
+    
+    do {
+      let fetchRequest = FavoriteMovieEntity.fetchRequest()
+      let predicate: NSPredicate = NSPredicate(format: "id == %d", Int(id))
+      fetchRequest.predicate = predicate
+      
+      print(try context.count(for: fetchRequest))
+      
+      return try context.count(for: fetchRequest) > 0
+    } catch {
+      print(error.localizedDescription)
+      return false
+    }
+    
   }
   
 }
