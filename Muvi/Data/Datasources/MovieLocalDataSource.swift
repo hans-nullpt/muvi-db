@@ -102,7 +102,7 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     
     do {
       let fetchRequest = FavoriteMovieEntity.fetchRequest()
-      let predicate: NSPredicate = NSPredicate(format: "title == %@", keyword)
+      let predicate: NSPredicate = NSPredicate(format: "title CONTAINS %@", keyword)
       fetchRequest.predicate = predicate
       
       let response = try context.fetch(fetchRequest)
