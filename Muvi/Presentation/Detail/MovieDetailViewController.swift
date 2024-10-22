@@ -14,7 +14,7 @@ enum MovieDetailSection: CaseIterable, Hashable {
 }
 
 class MovieDetailViewController: UIViewController {
-  var id: Int?
+  var movie: Movie?
   
   typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieDetailSection, MovieDetail>
   
@@ -41,7 +41,7 @@ class MovieDetailViewController: UIViewController {
     configureDataSource()
     
     Task {
-      if let id {
+      if let id = movie?.id {
         try await viewModel.getMovieDetail(by: id)
       }
     }
@@ -61,5 +61,13 @@ class MovieDetailViewController: UIViewController {
     if case .success(let data) = state {
       updateCollectionViewData(with: data, for: .detail)
     }
+  }
+  
+  @objc internal func addToFavorite(_ sender: UIButton) {
+    guard let movie else { return }
+    
+    print("Add To Favorite")
+    
+    viewModel.addToFavorite(movie: movie)
   }
 }

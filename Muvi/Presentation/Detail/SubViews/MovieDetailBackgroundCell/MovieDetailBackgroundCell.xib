@@ -128,6 +128,7 @@
             </constraints>
             <size key="customSize" width="375" height="871"/>
             <connections>
+                <outlet property="addToFavoriteBtn" destination="XYa-PJ-mAr" id="PTQ-96-CeQ"/>
                 <outlet property="backdropImageView" destination="5cC-8T-jRz" id="JlU-E0-2Bc"/>
                 <outlet property="genresLabel" destination="1Kr-LX-7x4" id="Fxq-zP-0u4"/>
                 <outlet property="gradientView" destination="w4E-7i-Ej6" id="24m-6S-LXJ"/>

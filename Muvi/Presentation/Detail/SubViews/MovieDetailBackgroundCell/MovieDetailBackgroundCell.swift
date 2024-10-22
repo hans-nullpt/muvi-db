@@ -20,7 +20,7 @@ class MovieDetailBackgroundCell: UICollectionViewCell {
   @IBOutlet weak var genresLabel: UILabel!
   @IBOutlet weak var overviewLabel: UILabel!
   @IBOutlet weak var gradientView: UIView!
-  
+  @IBOutlet weak var addToFavoriteBtn: UIButton!
   var gradientLayer: CAGradientLayer!
   
   override func awakeFromNib() {
