@@ -3,7 +3,6 @@
     <entity name="FavoriteMovieEntity" representedClassName="FavoriteMovieEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="backdropPath" optional="YES" attributeType="String"/>
-        <attribute name="genreIds" optional="YES" attributeType="Transformable"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalLanguage" optional="YES" attributeType="String"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
