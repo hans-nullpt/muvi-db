@@ -74,4 +74,12 @@ struct MovieRepositoryImpl: MovieRepository {
     }
   }
   
+  func searchFavoriteMovies(_ keyword: String) async throws -> Observable<[Movie]> {
+    do {
+      return try localDataSource.searchMovies(keyword)
+    } catch {
+      throw error
+    }
+  }
+  
 }
