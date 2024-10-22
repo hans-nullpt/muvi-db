@@ -17,9 +17,13 @@ class MuviTabBarViewController: UITabBarController {
   }
   
   lazy var homeViewController: UINavigationController = {
-    let datasource = MovieRemoteDataSourceImpl()
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
     
-    let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
     
     let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
     let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
@@ -38,9 +42,13 @@ class MuviTabBarViewController: UITabBarController {
   }()
   
   lazy var populerViewController: UINavigationController = {
-    let datasource = MovieRemoteDataSourceImpl()
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
     
-    let repository = MovieRepositoryImpl(remoteDataSource: datasource)
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
     
     let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
     let searchMoviesUsecase = SearchMoviesUsecase(repository: repository)
