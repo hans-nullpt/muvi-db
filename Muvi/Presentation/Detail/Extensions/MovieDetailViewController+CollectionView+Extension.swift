@@ -20,7 +20,10 @@ extension MovieDetailViewController {
     view.addSubview(collectionView)
     
     collectionView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      let topInset = (UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0) + 40
+      
+      make.top.equalTo(view.snp.top).offset(-topInset)
+      make.leading.trailing.bottom.equalToSuperview()
     }
     
     collectionView.register(
