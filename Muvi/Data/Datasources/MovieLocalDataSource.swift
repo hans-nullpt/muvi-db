@@ -12,6 +12,7 @@ import CoreData
 protocol MovieLocalDataSource {
   func addToFavorite(movie: Movie) throws -> Observable<Bool>
   func getFavoriteMovies() throws -> Observable<[Movie]>
+  func searchMovies(_ keyword: String) throws -> Observable<[Movie]>
 }
 
 enum MovieLocalDataError: Error {
@@ -96,6 +97,41 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     }
   }
   
+  func searchMovies(_ keyword: String) throws -> Observable<[Movie]> {
+    guard let context else { return Observable.of([]) }
+    
+    do {
+      let fetchRequest = FavoriteMovieEntity.fetchRequest()
+      let predicate: NSPredicate = NSPredicate(format: "title == %@", keyword)
+      fetchRequest.predicate = predicate
+      
+      let response = try context.fetch(fetchRequest)
+      let items = response.map { data in
+        Movie(
+          popularity: data.popularity,
+          voteCount: Int(data.voteCount),
+          posterPath: data.posterPath,
+          releaseDate: data.releaseDate,
+          overview: data.overview,
+          voteAverage: data.voteAverage,
+          backdropPath: data.backdropPath,
+          id: Int(data.id),
+          adult: data.adult,
+          video: data.video,
+          originalLanguage: data.originalLanguage,
+          title: data.title,
+          genreIds: [],
+          originalTitle: data.originalTitle
+        )
+      }
+      
+      return Observable.of(items)
+    } catch {
+      print(error.localizedDescription)
+      throw MovieLocalDataError.invalidData
+    }
+  }
+  
   private func itemExists(_ id: Int) -> Bool {
     guard let context else { return false }
     
@@ -103,8 +139,6 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
       let fetchRequest = FavoriteMovieEntity.fetchRequest()
       let predicate: NSPredicate = NSPredicate(format: "id == %d", Int(id))
       fetchRequest.predicate = predicate
-      
-      print(try context.count(for: fetchRequest))
       
       return try context.count(for: fetchRequest) > 0
     } catch {
