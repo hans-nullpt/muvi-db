@@ -65,7 +65,21 @@ class MuviTabBarViewController: UITabBarController {
   }()
   
   lazy var favoriteViewController: UINavigationController = {
-    let viewController = FavoriteViewController()
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
+    
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
+    
+    let favoriteMoviesUsecase = GetFavoriteMoviesUsecase(repository: repository)
+    
+    let viewModel = FavoriteMovieViewModel(
+      favoriteMoviesUsecase: favoriteMoviesUsecase
+    )
+    
+    let viewController = FavoriteViewController(viewModel: viewModel)
     viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 2)
     
     return UINavigationController(rootViewController: viewController)
