@@ -44,4 +44,25 @@ class MovieDetailViewModel {
     }
     
   }
+  
+  func addToFavorite(movie: Movie) {
+    do {
+      let items = try addToFavoriteUsecase.execute(movie: movie)
+      
+      items.subscribe(
+        onNext: { [weak self] item in
+          guard let self else { return }
+          
+//          self.movieDetail.accept(.success(item))
+        },
+        onError: { [weak self] error in
+          guard let self else { return }
+          
+//          self.movieDetail.accept(.error(message: error.localizedDescription))
+        }
+      ).disposed(by: disposeBag)
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
 }
