@@ -21,6 +21,7 @@ extension PopularMoviesViewController {
     
     collectionView.register(MovieGridCell.nib(), forCellWithReuseIdentifier: MovieGridCell.reusableId)
     collectionView.backgroundColor = .systemBackground
+    collectionView.delegate = self
   }
   
   internal func createMovieGridFlowLayout() -> UICollectionViewFlowLayout {
@@ -66,4 +67,25 @@ extension PopularMoviesViewController {
     
   }
   
+}
+
+extension PopularMoviesViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let item = items[indexPath.item]
+    
+    let remoteDataSource = MovieRemoteDataSourceImpl()
+    let localDataSource = MovieLocalDataSourceImpl(database: CoreDataManager.shared)
+    
+    let repository = MovieRepositoryImpl(
+      remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource
+    )
+    
+    let usecase = GetMovieDetail(repository: repository)
+    let vm = MovieDetailViewModel(movieDetailUsecase: usecase)
+    let vc = MovieDetailViewController(viewModel: vm)
+    vc.id = item.id
+    navigationController?.pushViewController(vc, animated: true)
+  }
 }
