@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class PopularMoviesViewController: UIViewController {
   typealias MovieDataSource = UICollectionViewDiffableDataSource<Int, Movie>
@@ -59,6 +60,23 @@ class PopularMoviesViewController: UIViewController {
     view.addSubview(searchField)
     
     searchField.delegate = self
+    
+    searchField.rx.text.orEmpty
+      .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+      .subscribe { [weak self] value in
+        guard let self else { return }
+        
+        if case .next(let value) = value {
+          Task {
+            if value.isEmpty {
+              try await self.viewModel.getPopularMovies()
+            } else {
+              try await self.viewModel.searchMovie(value)
+            }
+          }
+        }
+      }
+      .disposed(by: disposeBag)
     
     searchField.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(20)
