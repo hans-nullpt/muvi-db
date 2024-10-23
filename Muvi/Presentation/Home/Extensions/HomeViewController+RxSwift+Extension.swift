@@ -52,6 +52,11 @@ extension HomeViewController {
       
       topRatedMovies = movies
       updateCollectionViewData(with: movies, for: .topRated)
+      indicator.stopAnimating()
+    }
+    
+    if case .loading = state {
+      indicator.startAnimating()
     }
   }
   
@@ -59,6 +64,11 @@ extension HomeViewController {
     if case .success(let items) = state {
       popularMovies = items
       updateCollectionViewData(with: items, for: .popular)
+      indicator.stopAnimating()
+    }
+    
+    if case .loading = state {
+      indicator.startAnimating()
     }
   }
   
@@ -66,6 +76,11 @@ extension HomeViewController {
     if case .success(let items) = state {
       upcomingMovies = items
       updateCollectionViewData(with: items, for: .upcoming)
+      indicator.stopAnimating()
+    }
+    
+    if case .loading = state {
+      indicator.startAnimating()
     }
   }
 }

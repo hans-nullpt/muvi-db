@@ -138,9 +138,7 @@ extension HomeViewController {
     var snapshot = NSDiffableDataSourceSectionSnapshot<Movie>()
     snapshot.append(movies)
     
-    DispatchQueue.main.async {
-      self.datasource.apply(snapshot, to: section)
-    }
+    datasource.apply(snapshot, to: section)
   }
   
   private func createTopRatedMovieCell(at indexPath: IndexPath, movie: Movie) -> UICollectionViewCell? {

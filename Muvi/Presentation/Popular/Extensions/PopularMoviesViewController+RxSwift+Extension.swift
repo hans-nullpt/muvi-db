@@ -25,6 +25,11 @@ extension PopularMoviesViewController {
     if case .success(let items) = state {
       updateCollectionViewData(with: items)
       self.items = items
+      indicator.stopAnimating()
+    }
+    
+    if case .loading = state {
+      indicator.startAnimating()
     }
   }
 }

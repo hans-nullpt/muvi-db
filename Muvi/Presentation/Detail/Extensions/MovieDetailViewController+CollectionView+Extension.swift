@@ -85,17 +85,17 @@ extension MovieDetailViewController {
     datasource = MovieDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, movie in
       
       return self?.createMovieDetailCell(at: indexPath, movie: movie)
-//      guard let self else { return nil }
+      //      guard let self else { return nil }
       
-//      switch indexPath.section {
-//      case 0:
-//        return self.createTopRatedMovieCell(at: indexPath, movie: movie)
-//      default:
-//        return self.createDefaultMovieCell(at: indexPath, movie: movie)
-//      }
+      //      switch indexPath.section {
+      //      case 0:
+      //        return self.createTopRatedMovieCell(at: indexPath, movie: movie)
+      //      default:
+      //        return self.createDefaultMovieCell(at: indexPath, movie: movie)
+      //      }
     }
     
-//    datasource.supplementaryViewProvider = configureSupplementaryViewProvider
+    //    datasource.supplementaryViewProvider = configureSupplementaryViewProvider
   }
   
   private func createMovieDetailCell(at indexPath: IndexPath, movie: MovieDetail) -> UICollectionViewCell? {
@@ -120,8 +120,7 @@ extension MovieDetailViewController {
     var snapshot = NSDiffableDataSourceSectionSnapshot<MovieDetail>()
     snapshot.append([movieDetail])
     
-    DispatchQueue.main.async {
-      self.datasource.apply(snapshot, to: section)
-    }
+    self.datasource.apply(snapshot, to: section)
+    
   }
 }
