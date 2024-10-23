@@ -16,7 +16,7 @@ enum MovieDetailSection: CaseIterable, Hashable {
 class MovieDetailViewController: UIViewController {
   var movie: Movie?
   
-  typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieDetailSection, MovieDetail>
+  typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieDetailSection, AnyHashable>
   
   var collectionView: UICollectionView!
   let indicator = UIActivityIndicatorView()
@@ -63,7 +63,8 @@ class MovieDetailViewController: UIViewController {
   
   internal func updateViewState(for state: ViewState<MovieDetail>) {
     if case .success(let data) = state {
-      updateCollectionViewData(with: data, for: .detail)
+      updateCollectionViewData(with: [data], for: .detail)
+      updateCollectionViewData(with: data.productionCompanies ?? [], for: .castMember)
       indicator.stopAnimating()
     }
     
