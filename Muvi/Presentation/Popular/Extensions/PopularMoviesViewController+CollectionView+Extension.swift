@@ -59,11 +59,7 @@ extension PopularMoviesViewController {
     snapshot.appendSections([0])
     snapshot.appendItems(movies)
     
-    DispatchQueue.main.async { [weak self] in
-      guard let self else { return }
-      
-      self.datasource.apply(snapshot)
-    }
+    datasource.apply(snapshot)
     
   }
   

@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
     
     return label
   }()
+  let indicator = UIActivityIndicatorView()
   
   internal var datasource: MovieDataSource!
   internal var topRatedMovies: [Movie] = []
@@ -76,6 +77,7 @@ class HomeViewController: UIViewController {
     
     configureCollectionView()
     configureDataSource()
+    configureIndicatorView()
     
     Task {
       try await viewModel.getTopRatedMovies()
@@ -103,26 +105,17 @@ class HomeViewController: UIViewController {
     collectionView.frame = view.bounds
   }
   
+  internal func configureIndicatorView() {
+    indicator.style = .large
+    indicator.backgroundColor = .tertiarySystemBackground
+    indicator.layer.cornerRadius = 16
+    
+    view.addSubview(indicator)
+    
+    indicator.snp.makeConstraints { make in
+      make.height.width.equalTo(200)
+      make.center.equalToSuperview()
+    }
+  }
+  
 }
-
-#Preview(traits: .defaultLayout, body: {
-  let datasource = MovieRemoteDataSourceImpl()
-  let database = CoreDataManager.shared
-  let localSource = MovieLocalDataSourceImpl(
-    database: database
-  )
-  
-  let repository = MovieRepositoryImpl(remoteDataSource: datasource, localDataSource: localSource)
-  
-  let topRatedMoviesUsecase = GetTopRatedMoviesUsecase(repository: repository)
-  let popularMoviesUsecase = GetPopularMoviesUsecase(repository: repository)
-  let upcomingMoviesUsecase = GetUpcomingMoviesUsecase(repository: repository)
-  
-  let viewModel = MovieListViewModel(
-    topRatedMoviesUsecase: topRatedMoviesUsecase,
-    popularMoviesUsecase: popularMoviesUsecase,
-    upcomingMoviesUsecase: upcomingMoviesUsecase
-  )
-  
-  HomeViewController(viewModel: viewModel)
-})

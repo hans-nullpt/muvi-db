@@ -23,6 +23,8 @@ class PopularMoviesViewController: UIViewController {
     return field
   }()
   
+  let indicator = UIActivityIndicatorView()
+  
   internal var datasource: MovieDataSource!
   
   internal let viewModel: PopularMovieListViewModel
@@ -48,6 +50,7 @@ class PopularMoviesViewController: UIViewController {
     configureSearchField()
     configureCollectionView()
     configureDataSource()
+    configureIndicatorView()
     
     Task {
       try await viewModel.getPopularMovies()
@@ -81,6 +84,19 @@ class PopularMoviesViewController: UIViewController {
     searchField.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(20)
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+    }
+  }
+  
+  internal func configureIndicatorView() {
+    indicator.style = .large
+    indicator.backgroundColor = .tertiarySystemBackground
+    indicator.layer.cornerRadius = 16
+    
+    view.addSubview(indicator)
+    
+    indicator.snp.makeConstraints { make in
+      make.height.width.equalTo(200)
+      make.center.equalToSuperview()
     }
   }
   

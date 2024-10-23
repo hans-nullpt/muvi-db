@@ -19,6 +19,7 @@ class MovieDetailViewController: UIViewController {
   typealias MovieDataSource = UICollectionViewDiffableDataSource<MovieDetailSection, MovieDetail>
   
   var collectionView: UICollectionView!
+  let indicator = UIActivityIndicatorView()
   
   internal var datasource: MovieDataSource!
   let viewModel: MovieDetailViewModel
@@ -39,6 +40,7 @@ class MovieDetailViewController: UIViewController {
     
     configureCollectionView()
     configureDataSource()
+    configureIndicatorView()
     
     Task {
       if let id = movie?.id {
@@ -53,13 +55,33 @@ class MovieDetailViewController: UIViewController {
     viewModel.movieDetail.subscribe { [weak self] state in
       guard let self else { return }
       
-      updateViewState(for: state)
+      DispatchQueue.main.async {
+        self.updateViewState(for: state)
+      }
     }.disposed(by: disposeBag)
   }
   
   internal func updateViewState(for state: ViewState<MovieDetail>) {
     if case .success(let data) = state {
       updateCollectionViewData(with: data, for: .detail)
+      indicator.stopAnimating()
+    }
+    
+    if case .loading = state {
+      indicator.startAnimating()
+    }
+  }
+  
+  internal func configureIndicatorView() {
+    indicator.style = .large
+    indicator.backgroundColor = .tertiarySystemBackground
+    indicator.layer.cornerRadius = 16
+    
+    view.addSubview(indicator)
+    
+    indicator.snp.makeConstraints { make in
+      make.height.width.equalTo(200)
+      make.center.equalToSuperview()
     }
   }
   
