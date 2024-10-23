@@ -16,33 +16,41 @@
                 <rect key="frame" x="0.0" y="0.0" width="90" height="134"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Pa5-eJ-ie3">
-                        <rect key="frame" x="0.0" y="0.0" width="90" height="87.333333333333329"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="David Ed Diamate" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubn-p6-aKW">
-                        <rect key="frame" x="0.0" y="93" width="90" height="31"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HpK-sk-21t">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="134"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Paj-yg-LOv">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="DEs-qX-27y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="David Ed Diamate" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubn-p6-aKW">
+                                <rect key="frame" x="18.333333333333332" y="106" width="53.333333333333343" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Paj-yg-LOv" firstAttribute="leading" secondItem="HpK-sk-21t" secondAttribute="leadingMargin" id="LWX-I8-dxW"/>
+                            <constraint firstItem="ubn-p6-aKW" firstAttribute="top" secondItem="Paj-yg-LOv" secondAttribute="bottom" constant="16" id="sJD-Sl-Edz"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="ubn-p6-aKW" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="KiY-fF-oky"/>
-                <constraint firstItem="Pa5-eJ-ie3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LPZ-5q-J6t"/>
-                <constraint firstItem="Pa5-eJ-ie3" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="eC5-Z7-fic"/>
-                <constraint firstItem="ubn-p6-aKW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="eHl-Jk-Np8"/>
-                <constraint firstAttribute="leading" secondItem="Pa5-eJ-ie3" secondAttribute="leading" id="eyc-hj-1ib"/>
-                <constraint firstAttribute="trailingMargin" secondItem="ubn-p6-aKW" secondAttribute="trailing" id="xXh-3x-dHC"/>
+                <constraint firstAttribute="trailing" secondItem="HpK-sk-21t" secondAttribute="trailing" id="0RL-yY-fI8"/>
+                <constraint firstItem="HpK-sk-21t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aEw-eK-dVD"/>
+                <constraint firstAttribute="bottom" secondItem="HpK-sk-21t" secondAttribute="bottom" id="ttE-Tf-iQt"/>
+                <constraint firstItem="HpK-sk-21t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="whD-LN-cMV"/>
             </constraints>
             <connections>
-                <outlet property="avatarView" destination="Pa5-eJ-ie3" id="4xS-gJ-xXM"/>
+                <outlet property="avatarView" destination="Paj-yg-LOv" id="D5O-YJ-fko"/>
+                <outlet property="nameLabel" destination="ubn-p6-aKW" id="Cda-Cp-Enp"/>
             </connections>
             <point key="canvasLocation" x="207.63358778625954" y="44.366197183098592"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="person" catalog="system" width="128" height="121"/>
-    </resources>
 </document>
