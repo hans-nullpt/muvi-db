@@ -74,6 +74,14 @@ struct MovieRepositoryImpl: MovieRepository {
     }
   }
   
+  func removeFromFavorite(movie: Movie) throws -> Observable<Bool> {
+    do {
+      return try localDataSource.removeFromFavorite(movie: movie)
+    } catch {
+      throw error
+    }
+  }
+  
   func searchFavoriteMovies(_ keyword: String) async throws -> Observable<[Movie]> {
     do {
       return try localDataSource.searchMovies(keyword)

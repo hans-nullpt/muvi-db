@@ -11,6 +11,7 @@ import CoreData
 
 protocol MovieLocalDataSource {
   func addToFavorite(movie: Movie) throws -> Observable<Bool>
+  func removeFromFavorite(movie: Movie) throws -> Observable<Bool>
   func getFavoriteMovies() throws -> Observable<[Movie]>
   func searchMovies(_ keyword: String) throws -> Observable<[Movie]>
 }
@@ -18,6 +19,7 @@ protocol MovieLocalDataSource {
 enum MovieLocalDataError: Error {
   case invalidData
   case failedToStore
+  case failedToRemove
 }
 
 struct MovieLocalDataSourceImpl: MovieLocalDataSource {
@@ -56,6 +58,24 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
       return Observable.of(true)
     } catch {
       throw MovieLocalDataError.failedToStore
+    }
+  }
+  
+  func removeFromFavorite(movie: Movie) throws -> Observable<Bool> {
+    guard let context else { return Observable.of(false) }
+    
+    do {
+      guard let movie = try getMovieById(movie.id!) else {
+        throw MovieLocalDataError.failedToRemove
+      }
+      
+      context.delete(movie)
+      try context.save()
+      
+      return Observable.of(true)
+    } catch {
+      print(error.localizedDescription)
+      throw MovieLocalDataError.invalidData
     }
   }
   
@@ -144,6 +164,22 @@ struct MovieLocalDataSourceImpl: MovieLocalDataSource {
     } catch {
       print(error.localizedDescription)
       return false
+    }
+    
+  }
+  
+  private func getMovieById(_ id: Int) throws -> FavoriteMovieEntity? {
+    guard let context else { return nil }
+    
+    do {
+      let fetchRequest = FavoriteMovieEntity.fetchRequest()
+      let predicate: NSPredicate = NSPredicate(format: "id == %d", Int(id))
+      fetchRequest.predicate = predicate
+      
+      return (try context.fetch(fetchRequest)).first
+    } catch {
+      print(error.localizedDescription)
+      throw MovieLocalDataError.invalidData
     }
     
   }
