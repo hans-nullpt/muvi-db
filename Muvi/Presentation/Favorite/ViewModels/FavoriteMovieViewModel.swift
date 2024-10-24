@@ -15,10 +15,16 @@ class FavoriteMovieViewModel {
   private let disposeBag = DisposeBag()
   private let favoriteMoviesUsecase: GetFavoriteMoviesUsecase
   private let searchMoviesUsecase: SearchFavoriteMoviesUsecase
+  private let removeFromFavoriteUsecase: RemoveFromFavoriteUsecase
   
-  init(favoriteMoviesUsecase: GetFavoriteMoviesUsecase, searchMoviesUsecase: SearchFavoriteMoviesUsecase) {
+  init(
+    favoriteMoviesUsecase: GetFavoriteMoviesUsecase,
+    searchMoviesUsecase: SearchFavoriteMoviesUsecase,
+    removeFromFavoriteUsecase: RemoveFromFavoriteUsecase
+  ) {
     self.favoriteMoviesUsecase = favoriteMoviesUsecase
     self.searchMoviesUsecase = searchMoviesUsecase
+    self.removeFromFavoriteUsecase = removeFromFavoriteUsecase
   }
   
   func getFavoriteMovies() async throws {
@@ -65,6 +71,14 @@ class FavoriteMovieViewModel {
       ).disposed(by: disposeBag)
     } catch {
       movies.accept(.error(message: error.localizedDescription))
+    }
+  }
+  
+  func removeFromFavorite(_ movie: Movie) {
+    do {
+      try removeFromFavoriteUsecase.execute(movie: movie)
+    } catch {
+      print(error.localizedDescription)
     }
   }
   
