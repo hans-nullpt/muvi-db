@@ -7,17 +7,28 @@
 
 import UIKit
 
+protocol FavoriteMovieCellDelegate {
+  func didRemoveItem()
+}
+
 class FavoriteMovieCell: UITableViewCell {
   static let reusableId: String = "FavoriteMovieCell"
   static func nib() -> UINib {
     UINib(nibName: "FavoriteMovieCell", bundle: nil)
   }
   
+  var movie: Movie!
+  var vm: FavoriteMovieViewModel!
+  var delegate: FavoriteMovieCellDelegate?
+  
   @IBOutlet weak var backdropImageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var releaseYearLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
-  
+  @IBAction func removeFavoriteButton(_ sender: Any) {
+    vm?.removeFromFavorite(movie)
+    delegate?.didRemoveItem()
+  }
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

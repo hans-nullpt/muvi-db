@@ -85,9 +85,16 @@ class FavoriteViewController: UIViewController {
       guard let cell else { return nil }
       
       cell.updateData(with: movie)
+      cell.movie = movie
+      cell.vm = self.viewModel
+      cell.delegate = self
       
       return cell
     }
+  }
+  
+  @objc private func removeFavorite(_ sender: Any?) {
+//    viewModel.removeFromFavorite(move())
   }
   
   internal func updateTableViewData(with movies: [Movie]) {
@@ -145,6 +152,15 @@ class FavoriteViewController: UIViewController {
     if case .success(let items) = state {
       updateTableViewData(with: items)
       self.items = items
+    }
+  }
+  
+}
+
+extension FavoriteViewController: FavoriteMovieCellDelegate {
+  func didRemoveItem() {
+    Task {
+      try await viewModel.getFavoriteMovies()
     }
   }
   
