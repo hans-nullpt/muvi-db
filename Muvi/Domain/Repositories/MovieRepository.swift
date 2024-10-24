@@ -16,5 +16,6 @@ protocol MovieRepository {
   func getMovie(by id: Int) async throws -> Observable<MovieDetail>
   func getFavoriteMovies() throws -> Observable<[Movie]>
   func addToFavorite(movie: Movie) throws -> Observable<Bool>
+  func removeFromFavorite(movie: Movie) throws -> Observable<Bool>
   func searchFavoriteMovies(_ keyword: String) async throws -> Observable<[Movie]>
 }
